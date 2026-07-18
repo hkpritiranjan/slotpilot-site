@@ -14,7 +14,7 @@
     'footer.github':   'GitHub',
 
     /* HERO */
-    'hero.eyebrow':  'Fizioterapie &middot; stomatologie &middot; chiropraxie',
+    'hero.eyebrow':  'Fizioterapie&nbsp;&middot;&nbsp;stomatologie&nbsp;&middot;&nbsp;chiropraxie',
     'hero.h1':       'Programarea de la 14:00 tocmai<br>a fost anulată.<br><em>A fost deja înlocuită.</em>',
     'hero.sub':      'SlotPilot trimite automat un SMS <strong>următorului pacient de pe lista de așteptare</strong> în momentul în care un loc se eliberează. Confirmă în 15 minute. Recepționera nu face nimic.',
     'hero.cta1':     'Probă gratuită de 30 de zile',
