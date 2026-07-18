@@ -14,7 +14,7 @@
     'footer.github':   'GitHub',
 
     /* HERO */
-    'hero.eyebrow':  'Physiotherapy&nbsp;&middot;&nbsp;dental&nbsp;&middot;&nbsp;chiropractic',
+    'hero.eyebrow':  'For clinics that can\'t afford empty appointment slots',
     'hero.h1':       'Your 2pm just<br>cancelled.<br><em>It\'s already filled.</em>',
     'hero.sub':      'SlotPilot automatically texts the <strong>next patient on your waitlist</strong> the moment a slot opens. They confirm in 15 minutes. Your receptionist does nothing.',
     'hero.cta1':     'Start 30-day free trial',

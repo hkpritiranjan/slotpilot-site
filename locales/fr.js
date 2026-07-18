@@ -14,7 +14,7 @@
     'footer.github':   'GitHub',
 
     /* HERO */
-    'hero.eyebrow':  'Kinésithérapie&nbsp;&middot;&nbsp;dentaire&nbsp;&middot;&nbsp;chiropraxie',
+    'hero.eyebrow':  'Pour les cabinets qui ne peuvent pas se permettre des créneaux vides',
     'hero.h1':       'Votre créneau de 14h vient<br>d\'être annulé.<br><em>Il est déjà pris.</em>',
     'hero.sub':      'SlotPilot envoie automatiquement un SMS au <strong>prochain patient de votre liste d\'attente</strong> dès qu\'un créneau se libère. Il confirme en 15 minutes. Votre secrétaire ne fait rien.',
     'hero.cta1':     'Essai gratuit de 30 jours',
