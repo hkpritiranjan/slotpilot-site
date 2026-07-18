@@ -16,8 +16,8 @@
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(0,191,165,0.08) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(244,98,42,0.06) 0%,transparent 50%);}
 .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;z-index:1;width:100%;}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr;}.hero-phone{display:none;}}
-.hero-eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:24px;flex-wrap:nowrap;}
-.hero-eyebrow span{display:inline-block;width:20px;height:1px;background:var(--teal);}
+.hero-eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--teal);margin-bottom:28px;line-height:1.5;}
+.hero-eyebrow .eyebrow-line{display:inline-block;vertical-align:middle;width:20px;height:1px;background:var(--teal);margin-right:6px;position:relative;top:-1px;flex-shrink:0;}
 .hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1;color:#fff;text-wrap:balance;letter-spacing:-0.02em;margin-bottom:24px;}
 .hero h1 em{font-style:italic;color:var(--teal);}
 .hero-sub{font-size:18px;line-height:1.7;color:rgba(255,255,255,0.65);max-width:520px;margin-bottom:36px;}
@@ -165,7 +165,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow"><span></span><span data-i18n="hero.eyebrow">Physiotherapy &middot; dental &middot; chiropractic</span></div>
+      <div class="hero-eyebrow"><span class="eyebrow-line"></span><span data-i18n="hero.eyebrow">Physiotherapy &middot; dental &middot; chiropractic</span></div>
       <h1 data-i18n="hero.h1">Your 2pm just<br>cancelled.<br><em>It's already filled.</em></h1>
       <p class="hero-sub" data-i18n="hero.sub">SlotPilot automatically texts the <strong>next patient on your waitlist</strong> the moment a slot opens. They confirm in 15 minutes. Your receptionist does nothing.</p>
       <div class="hero-actions">
