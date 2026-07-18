@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How SlotPilot Works — From Cancelled Slot to Filled Appointment</title>
+<meta name="description" content="A step-by-step walkthrough of how SlotPilot fills cancelled clinic appointments in under 15 minutes using automated SMS to your existing waitlist.">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{background:var(--midnight);padding:120px 5vw 64px;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 20%,rgba(0,191,165,0.08) 0%,transparent 60%);}
+.page-hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.page-eyebrow{font-size:12px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
+.page-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,5vw,54px);font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1.15;margin-bottom:20px;text-wrap:balance;}
+.page-hero p{font-size:18px;color:rgba(255,255,255,0.6);line-height:1.7;max-width:580px;}
+
+/* TIMELINE SECTION */
+.timeline{padding:80px 5vw;background:var(--surface);}
+.timeline-inner{max-width:860px;margin:0 auto;}
+.tl-step{display:grid;grid-template-columns:80px 1fr;gap:32px;margin-bottom:60px;position:relative;}
+.tl-step:not(:last-child)::after{content:'';position:absolute;left:39px;top:80px;width:2px;height:calc(100% - 20px);background:linear-gradient(to bottom,var(--teal-t) 0%,transparent 100%);}
+.tl-num{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.tl-circle{width:72px;height:72px;border-radius:50%;background:var(--midnight);color:var(--teal);font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;border:3px solid var(--teal-t);flex-shrink:0;font-variant-numeric:tabular-nums;}
+.tl-content{padding-top:12px;}
+.tl-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.tl-title{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:12px;letter-spacing:-0.02em;font-family:Georgia,"Times New Roman",serif;}
+.tl-desc{font-size:15px;color:var(--ash);line-height:1.7;margin-bottom:16px;}
+.tl-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:16px;}
+.tl-card-title{font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;}
+.tl-items{display:flex;flex-direction:column;gap:8px;}
+.tl-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink);line-height:1.5;}
+.tl-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+@media(max-width:600px){.tl-step{grid-template-columns:1fr;}.tl-step::after{display:none;}.tl-num{flex-direction:row;}.tl-circle{width:48px;height:48px;font-size:16px;}}
+
+/* CASCADE DIAGRAM */
+.cascade{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px;}
+.cascade-title{font-size:13px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px;}
+.cascade-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.cascade-row:last-child{border-bottom:none;}
+.cas-num{width:28px;height:28px;border-radius:50%;background:var(--teal-t);color:var(--teal);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cas-num.no{background:var(--ember-t);color:var(--ember);}
+.cas-name{flex:1;font-size:14px;color:var(--ink);font-weight:500;}
+.cas-action{font-size:12px;font-weight:600;padding:3px 10px;border-radius:100px;}
+.cas-action.sent{background:var(--teal-t);color:var(--teal);}
+.cas-action.no{background:var(--ember-t);color:var(--ember);}
+.cas-action.skip{background:var(--border);color:var(--ash);}
+.cas-action.booked{background:rgba(0,191,165,0.15);color:var(--teal);font-size:13px;font-weight:700;}
+
+/* MOCK SCREENS */
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}
+@media(max-width:640px){.screen-grid{grid-template-columns:1fr;}}
+.mock-screen{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.mock-header{background:var(--midnight);padding:12px 16px;display:flex;align-items:center;gap:8px;}
+.mock-dots{display:flex;gap:5px;}
+.mock-dot{width:8px;height:8px;border-radius:50%;}
+.mock-dot.r{background:#FF5F57;}.mock-dot.y{background:#FFBD2E;}.mock-dot.g{background:#28CA41;}
+.mock-url{flex:1;background:rgba(255,255,255,0.08);border-radius:5px;padding:4px 10px;font-size:11px;color:rgba(255,255,255,0.5);font-family:monospace;}
+.mock-body{padding:16px;}
+.mock-label{font-size:11px;font-weight:600;color:var(--ash);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+.mock-val{font-size:14px;color:var(--ink);margin-bottom:12px;}
+.mock-chip{display:inline-block;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:600;}
+.mock-chip.booked{background:var(--teal-t);color:var(--teal);}
+.mock-chip.waiting{background:var(--ember-t);color:var(--ember);}
+.mock-chip.open{background:rgba(99,102,241,0.1);color:#818CF8;}
+
+/* REMINDER TIMELINE */
+.reminder-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);}
+.reminder-row:last-child{border-bottom:none;}
+.reminder-time{font-size:13px;font-weight:700;color:var(--ink);min-width:70px;font-variant-numeric:tabular-nums;}
+.reminder-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.reminder-icon.sms{background:var(--teal-t);}
+.reminder-icon.appt{background:rgba(99,102,241,0.1);}
+.reminder-text{font-size:14px;color:var(--ash);}
+.reminder-text strong{color:var(--ink);}
+
+/* TIPS GRID */
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+@media(max-width:600px){.tips-grid{grid-template-columns:1fr;}}
+.tip{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.tip-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.tip-text{font-size:14px;color:var(--ash);line-height:1.6;}
+
+/* CTA BAR */
+.cta-bar{background:var(--midnight);padding:56px 5vw;text-align:center;}
+.cta-bar h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(24px,4vw,38px);font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:-0.02em;}
+.cta-bar p{font-size:16px;color:rgba(255,255,255,0.55);margin-bottom:28px;}
+.cta-bar-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+<nav id="nav" class="dark-nav">
+  <a class="nav-logo" href="index.html"><span class="dot"></span>SlotPilot</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link active" href="how-it-works.html">How it works</a>
+    <a class="nav-link" href="docs.html">Docs</a>
+    <button class="nav-theme" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
+    <a class="nav-cta" href="index.html#pricing">Start free &rarr;</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">How it works</div>
+    <h1>From cancelled slot to filled appointment &mdash; in 15 minutes.</h1>
+    <p>SlotPilot automates the entire process of recovering a lost clinic slot. Here&rsquo;s exactly what happens, step by step, from the clinic&rsquo;s perspective and the patient&rsquo;s.</p>
+  </div>
+</div>
+
+<div class="timeline">
+  <div class="timeline-inner">
+
+    <!-- STEP 1 -->
+    <div class="tl-step reveal">
+      <div class="tl-num"><div class="tl-circle">1</div></div>
+      <div class="tl-content">
+        <div class="tl-eyebrow">Setup &mdash; one time</div>
+        <div class="tl-title">Register your clinic and share the join link</div>
+        <div class="tl-desc">Takes 10 minutes. Create a free account, enter your clinic name, configure your appointment types (e.g. Initial Assessment, Follow-up, Dry Needling), and you&rsquo;re given a public link your patients can use to join your waitlist.</div>
+        <div class="tl-card">
+          <div class="tl-card-title">What you set up once</div>
+          <div class="tl-items">
+            <div class="tl-item"><div class="tl-dot"></div>Clinic name, address, practitioner names</div>
+            <div class="tl-item"><div class="tl-dot"></div>Appointment types (each type has its own waitlist queue)</div>
+            <div class="tl-item"><div class="tl-dot"></div>Slot duration (15, 30, 45, or 60 minutes)</div>
+            <div class="tl-item"><div class="tl-dot"></div>Your patient join link: <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:13px;">slotpilot.app/join/your-clinic-name</code></div>
+          </div>
+        </div>
+        <div class="tl-card" style="margin-top:12px;">
+          <div class="tl-card-title">How patients join your waitlist</div>
+          <div class="tl-desc" style="margin-bottom:0">Share the link anywhere: WhatsApp, your email footer, a printed card at reception, your Practo profile bio, Instagram bio. Patients open it on their phone, enter name + mobile number + which appointment type they need, and they&rsquo;re in. No app, no account, 90 seconds.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="tl-step reveal">
+      <div class="tl-num"><div class="tl-circle">2</div></div>
+      <div class="tl-content">
+        <div class="tl-eyebrow">Daily workflow</div>
+        <div class="tl-title">A patient cancels (or doesn&rsquo;t show up)</div>
+        <div class="tl-desc">When a booked patient cancels by call or WhatsApp, your receptionist opens SlotPilot and clicks <strong>Cancel</strong> on that slot. If a patient simply didn&rsquo;t show up, they click <strong>No-show</strong>. That&rsquo;s the only action your staff takes.</div>
+        <div class="screen-grid">
+          <div class="mock-screen">
+            <div class="mock-header"><div class="mock-dots"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div></div><div class="mock-url">slotpilot.app/dashboard/slots</div></div>
+            <div class="mock-body">
+              <div class="mock-label">Today's slots</div>
+              <div style="border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                  <div>
+                    <div style="font-size:13px;color:var(--ash);margin-bottom:3px;">2:00 PM &middot; Initial Assessment</div>
+                    <div style="font-size:15px;font-weight:600;color:var(--ink);">Rajesh Kumar</div>
+                  </div>
+                  <span class="mock-chip booked">Booked</span>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                  <button style="background:var(--ember-t);color:var(--ember);border:none;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">Cancel</button>
+                  <button style="background:var(--border);color:var(--ash);border:none;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">No-show</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-screen">
+            <div class="mock-header"><div class="mock-dots"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div></div><div class="mock-url">slotpilot.app/dashboard/slots</div></div>
+            <div class="mock-body">
+              <div class="mock-label">After clicking cancel</div>
+              <div style="border:1px solid rgba(0,191,165,0.3);border-radius:8px;padding:12px;margin-top:8px;background:var(--teal-t);">
+                <div style="font-size:13px;font-weight:600;color:var(--teal);margin-bottom:4px;">&#10003; Waitlist triggered</div>
+                <div style="font-size:13px;color:var(--ash);">Notifying <strong style="color:var(--ink);">Priya Mehta</strong> from waitlist via SMS&hellip;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="tl-step reveal">
+      <div class="tl-num"><div class="tl-circle">3</div></div>
+      <div class="tl-content">
+        <div class="tl-eyebrow">Automatic</div>
+        <div class="tl-title">SlotPilot texts the next patient on the waitlist</div>
+        <div class="tl-desc">The system scans the waitlist for the next patient who needs an <em>Initial Assessment</em> (matching the cancelled slot&rsquo;s type), ordered by priority then join date. It sends them an SMS instantly.</div>
+        <div class="tl-card">
+          <div class="tl-card-title">The SMS patients receive</div>
+          <div style="background:var(--midnight);border-radius:10px;padding:16px;margin-top:4px;">
+            <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px;">SMS &rarr; Priya Mehta (+91 9876543210)</div>
+            <div style="background:rgba(0,191,165,1);color:#0B1A3B;padding:10px 14px;border-radius:10px;border-bottom-right-radius:2px;font-size:14px;line-height:1.5;font-weight:500;">
+              Hi Priya! An <strong>Initial Assessment</strong> slot opened at City Physio Clinic today at 2:00pm. Reply <strong>YES</strong> to confirm or <strong>NO</strong> to skip. Offer expires in 15 minutes.
+            </div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:6px;text-align:right;">2:08pm &middot; SlotPilot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="tl-step reveal">
+      <div class="tl-num"><div class="tl-circle">4</div></div>
+      <div class="tl-content">
+        <div class="tl-eyebrow">15-minute window</div>
+        <div class="tl-title">Patient replies YES &mdash; slot is booked instantly</div>
+        <div class="tl-desc">If the patient replies YES within 15 minutes, the slot is booked under their name, a confirmation SMS is sent, and the slot card in your dashboard updates immediately. Your receptionist sees this happen — they don&rsquo;t do anything.</div>
+        <div class="tl-desc">If the patient replies NO, or doesn&rsquo;t respond in 15 minutes, the cascade moves on automatically to the next person on the list.</div>
+        <div class="cascade">
+          <div class="cascade-title">Example cascade — what happens when patient #1 says NO</div>
+          <div class="cascade-row"><div class="cas-num">1</div><div class="cas-name">Priya Mehta &mdash; Initial Assessment</div><span class="cas-action no">Said NO</span></div>
+          <div class="cascade-row"><div class="cas-num">2</div><div class="cas-name">Arjun Singh &mdash; Initial Assessment</div><span class="cas-action sent">SMS sent</span></div>
+          <div class="cascade-row"><div class="cas-num no">&#9650;</div><div class="cas-name" style="color:var(--ember);">Kavya Reddy &mdash; Priority patient</div><span class="cas-action booked">&#10003; Booked</span></div>
+          <div class="cascade-row"><div class="cas-num">3</div><div class="cas-name">Meena Iyer &mdash; Initial Assessment</div><span class="cas-action skip">Not reached</span></div>
+        </div>
+        <div style="margin-top:12px;font-size:13px;color:var(--ash);">&#8679; Priority patients (marked urgent by your staff) jump the queue automatically.</div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="tl-step reveal">
+      <div class="tl-num"><div class="tl-circle">5</div></div>
+      <div class="tl-content">
+        <div class="tl-eyebrow">Automatic reminders</div>
+        <div class="tl-title">Reminders go out automatically &mdash; no action needed</div>
+        <div class="tl-desc">Every booked patient (including waitlist fills and original bookings) automatically receives reminder SMS messages. This reduces no-show rates by 30&ndash;40%.</div>
+        <div class="tl-card">
+          <div class="tl-card-title">Reminder schedule for a 2:00 PM appointment</div>
+          <div class="tl-items" style="gap:0">
+            <div class="reminder-row">
+              <div class="reminder-time">Day before<br><span style="font-size:11px;color:var(--ash)">2:00 PM</span></div>
+              <div class="reminder-icon sms" style="font-size:16px">&#128172;</div>
+              <div class="reminder-text"><strong>24h reminder</strong> &mdash; &ldquo;Reminder: Your Initial Assessment at City Physio tomorrow at 2:00pm. Reply CONFIRM to keep or CANCEL to release your slot.&rdquo;</div>
+            </div>
+            <div class="reminder-row">
+              <div class="reminder-time">Same day<br><span style="font-size:11px;color:var(--ash)">12:00 PM</span></div>
+              <div class="reminder-icon sms" style="font-size:16px">&#128172;</div>
+              <div class="reminder-text"><strong>2h reminder</strong> &mdash; &ldquo;Your appointment at City Physio is in 2 hours (2:00 PM). We look forward to seeing you!&rdquo;</div>
+            </div>
+            <div class="reminder-row">
+              <div class="reminder-time">2:00 PM</div>
+              <div class="reminder-icon appt" style="font-size:16px">&#128197;</div>
+              <div class="reminder-text"><strong>Appointment time</strong> &mdash; patient arrives (or doesn&rsquo;t). If no-show, mark it in SlotPilot &rarr; waitlist triggered again.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRACTO WORKFLOW -->
+<section class="section surface-bg">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Clinic workflows</div>
+    <h2 class="reveal">Works the same whether you use Practo or not</h2>
+    <p class="section-sub reveal">SlotPilot doesn&rsquo;t replace your booking system. It plugs into the gap: the slot that just opened that your booking system can&rsquo;t fill automatically.</p>
+    <div class="tips-grid reveal">
+      <div class="tip">
+        <div class="tip-label">&#128203; Clinic using Practo</div>
+        <div class="tip-text">New patients book via Practo as normal. Your existing patients who&rsquo;ve asked to be notified of openings join your SlotPilot waitlist. When a Practo booking cancels, you mark it in SlotPilot. It fills the gap from your local waitlist — Practo never knows, and you don&rsquo;t have to chase anyone.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-label">&#128203; Clinic without Practo</div>
+        <div class="tip-text">Most of your patients come by word-of-mouth or walk-in. You add their upcoming bookings to SlotPilot manually. Patients who call asking about openings are told to join the waitlist via the link. When anything cancels, SlotPilot handles the recovery — you don&rsquo;t call anyone.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-label">&#8679; Priority queue use case</div>
+        <div class="tip-text">A post-surgery patient needs physiotherapy within the week but your calendar is full. Add them to the waitlist and mark them as <strong>high priority</strong>. The next time any Initial Assessment cancels, they&rsquo;re the first person texted — before any standard waitlist patient.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-label">&#128172; WhatsApp (coming soon)</div>
+        <div class="tip-text">SMS delivery in India can be unreliable. The WhatsApp Business API integration will replace SMS entirely — same YES/NO reply flow, but through WhatsApp where Indian patients actually respond. Expected in the next release.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-bar">
+  <h2>Ready to stop losing slots?</h2>
+  <p>30-day free trial. No credit card. Setup in 10 minutes.</p>
+  <div class="cta-bar-btns">
+    <a class="btn-primary" href="index.html#pricing">Start free trial</a>
+    <a class="btn-ghost-dark" href="docs.html">Read the docs</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
+    <div class="footer-links">
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="how-it-works.html">How it works</a>
+      <a class="footer-link" href="docs.html">Docs</a>
+      <a class="footer-link" href="index.html#pricing">Pricing</a>
+      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{if(window.scrollY>40){nav.classList.remove('dark-nav');nav.classList.add('scrolled-dark');}else{nav.classList.add('dark-nav');nav.classList.remove('scrolled-dark');}},{passive:true});
+const root=document.documentElement,themeBtn=document.getElementById('themeBtn');
+const stored=localStorage.getItem('sp-theme');if(stored)root.dataset.theme=stored;
+themeBtn.addEventListener('click',()=>{const c=root.dataset.theme,s=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light',n=!c?(s==='dark'?'light':'dark'):c==='dark'?'light':'dark';root.dataset.theme=n;localStorage.setItem('sp-theme',n);});
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1}).observe(el));
+</script>
+</body>
+</html>

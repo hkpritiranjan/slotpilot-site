@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SlotPilot Documentation — Setup, API Reference & Configuration</title>
+<meta name="description" content="Complete documentation for SlotPilot: installation, clinic setup, slot management, waitlist API, SMS system, reminders, and deployment guide.">
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:var(--bg);}
+.docs-layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh;max-width:1200px;margin:0 auto;padding:80px 5vw 60px;}
+@media(max-width:860px){.docs-layout{grid-template-columns:1fr;}}
+
+/* SIDEBAR */
+.sidebar{padding-top:32px;}
+.sidebar-sticky{position:sticky;top:80px;max-height:calc(100vh - 100px);overflow-y:auto;padding-right:16px;}
+.sidebar-section{margin-bottom:24px;}
+.sidebar-label{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--ash);margin-bottom:8px;padding-left:8px;}
+.sidebar-link{display:block;padding:5px 8px;border-radius:6px;font-size:13px;color:var(--ash);text-decoration:none;transition:background .15s,color .15s;line-height:1.4;}
+.sidebar-link:hover{background:var(--teal-t);color:var(--teal);}
+.sidebar-link.active{background:var(--teal-t);color:var(--teal);font-weight:600;}
+@media(max-width:860px){.sidebar{display:none;}}
+
+/* MOBILE NAV */
+.mobile-docnav{display:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:24px;}
+@media(max-width:860px){.mobile-docnav{display:block;}}
+.mobile-docnav select{width:100%;background:transparent;border:none;font-size:14px;color:var(--ink);outline:none;cursor:pointer;}
+
+/* DOC CONTENT */
+.doc-content{padding:32px 0 32px 48px;min-width:0;}
+@media(max-width:860px){.doc-content{padding:24px 0;}}
+.doc-section{margin-bottom:64px;scroll-margin-top:80px;}
+.doc-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.doc-section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,3.5vw,32px);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);line-height:1.2;}
+.doc-section h3{font-size:17px;font-weight:700;color:var(--ink);margin:28px 0 10px;letter-spacing:-0.01em;}
+.doc-section h4{font-size:14px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:0.05em;margin:20px 0 8px;}
+.doc-section p{font-size:15px;color:var(--ash);line-height:1.75;margin-bottom:14px;}
+.doc-section ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.doc-section li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ash);line-height:1.6;}
+.doc-section li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:7px;}
+.doc-section code{background:var(--surface);border:1px solid var(--border);padding:2px 6px;border-radius:4px;font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;color:var(--ink);}
+pre{background:var(--midnight);border-radius:10px;padding:20px;overflow-x:auto;margin:16px 0;}
+pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EEF8;line-height:1.6;}
+.code-label{font-size:11px;font-weight:600;color:var(--ash);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+
+/* CALLOUT */
+.callout{border-radius:10px;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;}
+.callout.tip{background:var(--teal-t);border-left:3px solid var(--teal);}
+.callout.warn{background:var(--ember-t);border-left:3px solid var(--ember);}
+.callout.info{background:rgba(99,102,241,0.08);border-left:3px solid #818CF8;}
+.callout-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.callout-text{font-size:14px;line-height:1.65;}
+.callout.tip .callout-text{color:var(--teal);}
+.callout.warn .callout-text{color:var(--ember);}
+.callout.info .callout-text{color:#818CF8;}
+
+/* TABLE */
+.doc-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;overflow-x:auto;display:block;}
+.doc-table th{text-align:left;padding:8px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--ash);background:var(--surface);border-bottom:2px solid var(--border);}
+.doc-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink);vertical-align:top;line-height:1.5;}
+.doc-table tr:last-child td{border-bottom:none;}
+.method{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;font-family:monospace;}
+.method.get{background:rgba(99,102,241,0.1);color:#818CF8;}
+.method.post{background:var(--teal-t);color:var(--teal);}
+.method.patch{background:rgba(245,158,11,0.1);color:#F59E0B;}
+.method.delete{background:var(--ember-t);color:var(--ember);}
+
+/* STEPS */
+.install-steps{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.install-step{display:flex;align-items:flex-start;gap:14px;}
+.install-num{width:28px;height:28px;border-radius:50%;background:var(--teal);color:var(--midnight);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.install-body{flex:1;}
+.install-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.install-desc{font-size:13px;color:var(--ash);line-height:1.6;}
+
+/* BADGE */
+.badge{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600;}
+.badge.required{background:var(--ember-t);color:var(--ember);}
+.badge.optional{background:var(--border);color:var(--ash);}
+.badge.auth{background:var(--teal-t);color:var(--teal);}
+.badge.public{background:rgba(99,102,241,0.1);color:#818CF8;}
+</style>
+</head>
+<body>
+<nav id="nav" class="light-nav" style="background:rgba(255,255,255,0.97);border-color:var(--border);">
+  <a class="nav-logo dark-text" href="index.html"><span class="dot"></span>SlotPilot</a>
+  <div class="nav-links">
+    <a class="nav-link dark-link" href="index.html">Home</a>
+    <a class="nav-link dark-link" href="how-it-works.html">How it works</a>
+    <a class="nav-link dark-link active" href="docs.html">Docs</a>
+    <button class="nav-theme dark-btn" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
+    <a class="nav-cta" href="index.html#pricing">Start free &rarr;</a>
+  </div>
+</nav>
+
+<div class="docs-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-sticky">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Overview</div>
+        <a class="sidebar-link active" href="#overview">What is SlotPilot?</a>
+        <a class="sidebar-link" href="#architecture">Architecture</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Getting Started</div>
+        <a class="sidebar-link" href="#prerequisites">Prerequisites</a>
+        <a class="sidebar-link" href="#installation">Installation</a>
+        <a class="sidebar-link" href="#database">Database setup</a>
+        <a class="sidebar-link" href="#env">Environment variables</a>
+        <a class="sidebar-link" href="#first-login">First login</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Core Concepts</div>
+        <a class="sidebar-link" href="#slots">Slots</a>
+        <a class="sidebar-link" href="#waitlist">Waitlist</a>
+        <a class="sidebar-link" href="#cascade">Cascade logic</a>
+        <a class="sidebar-link" href="#reminders">Reminders</a>
+        <a class="sidebar-link" href="#sms">SMS system</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">API Reference</div>
+        <a class="sidebar-link" href="#api-auth">Authentication</a>
+        <a class="sidebar-link" href="#api-slots">Slots</a>
+        <a class="sidebar-link" href="#api-waitlist">Waitlist</a>
+        <a class="sidebar-link" href="#api-sms">SMS &amp; Notifications</a>
+        <a class="sidebar-link" href="#api-reminders">Reminders</a>
+        <a class="sidebar-link" href="#api-clinic">Clinic</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Deployment</div>
+        <a class="sidebar-link" href="#deploy-vercel">Vercel</a>
+        <a class="sidebar-link" href="#deploy-db">Production database</a>
+        <a class="sidebar-link" href="#deploy-sms">Real SMS (Plivo/Twilio)</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Reference</div>
+        <a class="sidebar-link" href="#faq">FAQ</a>
+        <a class="sidebar-link" href="#stack">Tech stack</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MOBILE SELECT -->
+  <div style="padding-top:32px;">
+  <div class="mobile-docnav">
+    <select onchange="window.location.hash=this.value">
+      <option value="#overview">Overview</option>
+      <option value="#installation">Installation</option>
+      <option value="#slots">Slots</option>
+      <option value="#waitlist">Waitlist</option>
+      <option value="#api-auth">API: Auth</option>
+      <option value="#api-slots">API: Slots</option>
+      <option value="#api-waitlist">API: Waitlist</option>
+      <option value="#deploy-vercel">Deploy to Vercel</option>
+      <option value="#faq">FAQ</option>
+    </select>
+  </div>
+
+  <div class="doc-content">
+
+    <!-- OVERVIEW -->
+    <div class="doc-section" id="overview">
+      <div class="doc-eyebrow">Overview</div>
+      <h2>What is SlotPilot?</h2>
+      <p>SlotPilot is an automated clinic waitlist and no-show recovery system. When a booked patient cancels or doesn't show up, SlotPilot finds the next matching patient on the waitlist, texts them an offer, and books the slot automatically if they confirm — all within 15 minutes, with no staff involvement after the initial cancel action.</p>
+      <p>It is built as a self-hostable Next.js application for small clinics (physiotherapy, chiropractic, dental) that are losing significant revenue to unfilled cancelled appointments but don't have the budget for enterprise scheduling software.</p>
+      <ul>
+        <li>SMS cascade: system texts waitlist patients one by one until someone confirms</li>
+        <li>15-minute offer windows: each patient has 15 minutes to reply YES before the next is tried</li>
+        <li>24h + 2h reminders: automatically sent to all booked patients to reduce no-show rates</li>
+        <li>Priority queue: high-priority patients jump the standard waitlist queue</li>
+        <li>Multi-practitioner: slots can be assigned to specific practitioners within a clinic</li>
+        <li>Mock SMS for local dev: full SMS lifecycle simulated in the UI, no external service needed</li>
+      </ul>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div class="doc-section" id="architecture">
+      <div class="doc-eyebrow">Overview</div>
+      <h2>Architecture</h2>
+      <p>SlotPilot is a standard Next.js 16 App Router application. All business logic lives in API route handlers (<code>src/app/api/</code>). The frontend is server-rendered React with client components only where interactivity is required.</p>
+      <pre><code>src/
+├── app/
+│   ├── api/
+│   │   ├── auth/         # login, signup, session, logout
+│   │   ├── slots/        # CRUD + status transitions
+│   │   │   └── [id]/     # GET / PATCH / DELETE single slot
+│   │   ├── waitlist/     # Patient waitlist management
+│   │   │   └── [id]/     # PATCH / DELETE single entry
+│   │   ├── sms/          # SMS log + reply simulation
+│   │   ├── reminders/    # Reminder processing
+│   │   └── clinic/       # Clinic profile
+│   ├── dashboard/        # Clinic-side UI (auth-gated)
+│   │   ├── slots/
+│   │   ├── waitlist/
+│   │   └── sms/
+│   ├── join/[slug]/      # Public patient waitlist join page
+│   └── signup/           # Clinic registration
+└── lib/
+    ├── db.ts             # Prisma client singleton
+    ├── session.ts        # JWT cookie auth (jose)
+    ├── sms.ts            # SMS abstraction layer
+    └── waitlist-engine.ts  # Core cascade + reminder logic</code></pre>
+      <h3>Data models</h3>
+      <table class="doc-table">
+        <thead><tr><th>Model</th><th>Purpose</th><th>Key fields</th></tr></thead>
+        <tbody>
+          <tr><td><code>Clinic</code></td><td>One row per registered clinic</td><td>name, email, slug, appointmentTypes, slotDuration</td></tr>
+          <tr><td><code>Slot</code></td><td>A single appointment slot</td><td>date, time, patientName, appointmentType, status, practitioner</td></tr>
+          <tr><td><code>WaitlistEntry</code></td><td>A patient waiting for a slot</td><td>patientName, phone, appointmentType, priority, status</td></tr>
+          <tr><td><code>Notification</code></td><td>An active offer sent to a waitlist patient</td><td>slotId, waitlistEntryId, status, expiresAt</td></tr>
+          <tr><td><code>SmsMessage</code></td><td>Log of all SMS sent/received</td><td>to, body, direction, tag</td></tr>
+          <tr><td><code>Reminder</code></td><td>Scheduled reminders for booked slots</td><td>slotId, type (24h/2h), sentAt</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PREREQUISITES -->
+    <div class="doc-section" id="prerequisites">
+      <div class="doc-eyebrow">Getting Started</div>
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>Node.js 18 or higher (<code>node --version</code> to check)</li>
+        <li>npm 9 or higher</li>
+        <li>Git</li>
+      </ul>
+      <p>No database server required for local development — SlotPilot uses SQLite via libsql, which runs as a local file.</p>
+    </div>
+
+    <!-- INSTALLATION -->
+    <div class="doc-section" id="installation">
+      <div class="doc-eyebrow">Getting Started</div>
+      <h2>Installation</h2>
+      <div class="install-steps">
+        <div class="install-step"><div class="install-num">1</div><div class="install-body"><div class="install-title">Clone the repository</div><pre><code>git clone https://github.com/hkpritiranjan/slotpilot.git
+cd slotpilot</code></pre></div></div>
+        <div class="install-step"><div class="install-num">2</div><div class="install-body"><div class="install-title">Install dependencies</div><pre><code>npm install</code></pre></div></div>
+        <div class="install-step"><div class="install-num">3</div><div class="install-body"><div class="install-title">Set up environment variables</div><div class="install-desc">Copy the example and edit as needed (see Environment Variables section below).</div><pre><code># Create .env.local
+DATABASE_URL="file:./prisma/slotpilot.db"
+SESSION_SECRET="your-secret-at-least-32-characters-long"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"</code></pre></div></div>
+        <div class="install-step"><div class="install-num">4</div><div class="install-body"><div class="install-title">Generate Prisma client and push schema</div><pre><code>npx prisma generate
+npx prisma db push</code></pre></div></div>
+        <div class="install-step"><div class="install-num">5</div><div class="install-body"><div class="install-title">Seed the demo clinic (optional)</div><div class="install-desc">Creates a demo account: <code>demo@slotpilot.com</code> / <code>demo1234</code>, slug <code>city-physio</code>.</div><pre><code>npx tsx prisma/seed.ts</code></pre></div></div>
+        <div class="install-step"><div class="install-num">6</div><div class="install-body"><div class="install-title">Start the development server</div><pre><code>npm run dev</code></pre><div class="install-desc">Open <a href="http://localhost:3000" style="color:var(--teal)">http://localhost:3000</a></div></div></div>
+      </div>
+    </div>
+
+    <!-- ENV -->
+    <div class="doc-section" id="env">
+      <div class="doc-eyebrow">Getting Started</div>
+      <h2>Environment Variables</h2>
+      <table class="doc-table">
+        <thead><tr><th>Variable</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>DATABASE_URL</code></td><td><span class="badge required">required</span></td><td>SQLite file path or libSQL URL. For local: <code>file:./prisma/slotpilot.db</code></td></tr>
+          <tr><td><code>SESSION_SECRET</code></td><td><span class="badge required">required</span></td><td>At least 32 characters. Used to sign JWT session cookies.</td></tr>
+          <tr><td><code>NEXT_PUBLIC_APP_URL</code></td><td><span class="badge required">required</span></td><td>Full base URL. Used to construct patient join links. E.g. <code>https://your-clinic.vercel.app</code></td></tr>
+          <tr><td><code>SMS_API_KEY</code></td><td><span class="badge optional">optional</span></td><td>Plivo/Twilio API key. If absent, SMS is mocked in the database.</td></tr>
+          <tr><td><code>SMS_FROM</code></td><td><span class="badge optional">optional</span></td><td>Sender number for real SMS. E.g. <code>+917400000000</code></td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip"><div class="callout-icon">&#128161;</div><div class="callout-text">The mock SMS system works fully without any external API keys. You can simulate the entire YES/NO reply flow through the SMS Inbox tab in the dashboard.</div></div>
+    </div>
+
+    <!-- FIRST LOGIN -->
+    <div class="doc-section" id="first-login">
+      <div class="doc-eyebrow">Getting Started</div>
+      <h2>First Login &amp; Demo Flow</h2>
+      <p>After seeding, log in with <code>demo@slotpilot.com</code> / <code>demo1234</code> to explore the full system.</p>
+      <h3>End-to-end demo in 5 minutes</h3>
+      <div class="install-steps">
+        <div class="install-step"><div class="install-num">1</div><div class="install-body"><div class="install-title">Create a slot</div><div class="install-desc">Go to Dashboard &rarr; Slots &rarr; Add Slot. Set patient name, date/time, appointment type (e.g. Initial Assessment), and mark it as Booked.</div></div></div>
+        <div class="install-step"><div class="install-num">2</div><div class="install-body"><div class="install-title">Add yourself to the waitlist</div><div class="install-desc">Open <code>/join/city-physio</code> in a new tab. Enter your name, phone, and select the same appointment type.</div></div></div>
+        <div class="install-step"><div class="install-num">3</div><div class="install-body"><div class="install-title">Cancel the slot</div><div class="install-desc">Back in the dashboard, click Cancel on the slot. You&rsquo;ll see a green notification: "Notifying [your name] from waitlist via SMS."</div></div></div>
+        <div class="install-step"><div class="install-num">4</div><div class="install-body"><div class="install-title">Simulate a YES reply</div><div class="install-desc">Go to Dashboard &rarr; SMS Inbox. You&rsquo;ll see the outbound SMS. Click "Simulate YES." The slot is booked under your name immediately.</div></div></div>
+        <div class="install-step"><div class="install-num">5</div><div class="install-body"><div class="install-title">Check reminders</div><div class="install-desc">The system has queued 24h and 2h reminders. You can trigger them manually via <code>POST /api/reminders</code> to see the reminder SMS logged.</div></div></div>
+      </div>
+    </div>
+
+    <!-- SLOTS -->
+    <div class="doc-section" id="slots">
+      <div class="doc-eyebrow">Core Concepts</div>
+      <h2>Slots</h2>
+      <p>A slot represents a single appointment time in a clinic's schedule. Slots have the following statuses:</p>
+      <table class="doc-table">
+        <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>open</code></td><td>Slot exists but no patient booked yet</td></tr>
+          <tr><td><code>booked</code></td><td>A patient is booked. 24h and 2h reminders will be sent.</td></tr>
+          <tr><td><code>cancelled</code></td><td>Patient cancelled. Triggers the waitlist cascade immediately.</td></tr>
+          <tr><td><code>no_show</code></td><td>Patient didn't show. Triggers the waitlist cascade for future slots.</td></tr>
+          <tr><td><code>completed</code></td><td>Appointment occurred. Terminal state.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip"><div class="callout-icon">&#128161;</div><div class="callout-text">The waitlist cascade is triggered the moment a slot transitions to <code>cancelled</code> or <code>no_show</code> status via the PATCH endpoint. This is the only action that triggers it.</div></div>
+    </div>
+
+    <!-- WAITLIST -->
+    <div class="doc-section" id="waitlist">
+      <div class="doc-eyebrow">Core Concepts</div>
+      <h2>Waitlist</h2>
+      <p>The waitlist is a per-clinic queue of patients waiting for a specific appointment type. Each entry has:</p>
+      <table class="doc-table">
+        <thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>patientName</code></td><td>string</td><td>Patient's full name</td></tr>
+          <tr><td><code>phone</code></td><td>string</td><td>Mobile number (SMS target)</td></tr>
+          <tr><td><code>appointmentType</code></td><td>string</td><td>Must match one of the clinic's configured types</td></tr>
+          <tr><td><code>priority</code></td><td>normal / high</td><td>High priority patients are offered slots before normal-priority patients</td></tr>
+          <tr><td><code>preferredDays</code></td><td>string[]</td><td>Optional. Patient's preferred days (Mon–Sun). Not yet used in matching.</td></tr>
+          <tr><td><code>notes</code></td><td>string</td><td>Optional. Staff notes on the patient.</td></tr>
+          <tr><td><code>status</code></td><td>waiting / notified / booked / removed</td><td>Set automatically by the system</td></tr>
+        </tbody>
+      </table>
+      <p>Patients add themselves via the public join page at <code>/join/[clinic-slug]</code>. Staff can also add patients from the dashboard.</p>
+    </div>
+
+    <!-- CASCADE -->
+    <div class="doc-section" id="cascade">
+      <div class="doc-eyebrow">Core Concepts</div>
+      <h2>Cascade Logic</h2>
+      <p>When a slot is cancelled or no-showed, <code>triggerWaitlistForSlot(slotId)</code> runs:</p>
+      <pre><code>1. Find all WaitlistEntry rows where:
+   - clinicId matches the slot's clinic
+   - appointmentType matches the slot's appointmentType
+   - status = "waiting"
+   Order by: priority DESC (high first), createdAt ASC (oldest first)
+
+2. Take the first matching entry.
+
+3. Create a Notification record:
+   - status: "pending"
+   - expiresAt: now + 15 minutes
+
+4. Send SMS to the patient.
+
+5. Update WaitlistEntry status to "notified".</code></pre>
+      <p>When the patient replies:</p>
+      <pre><code>YES reply → handleWaitlistReply(notificationId, "yes")
+  - Check notification not expired
+  - Update slot: status = "booked", patientName = waitlist patient
+  - Update WaitlistEntry: status = "booked"
+  - Update Notification: status = "accepted"
+  - Send confirmation SMS
+  - Schedule 24h and 2h reminders
+
+NO reply → handleWaitlistReply(notificationId, "no")
+  - Update Notification: status = "rejected"
+  - Update WaitlistEntry: status = "waiting" (back in queue)
+  - Call triggerWaitlistForSlot() again → next patient tried</code></pre>
+      <div class="callout warn"><div class="callout-icon">&#9888;</div><div class="callout-text">If a notification expires (15 minutes, no reply), the next run of the cascade will skip this patient and try the next one. Expiry is checked at reply time, not on a cron — add a cron job in production to auto-expire and cascade forward.</div></div>
+    </div>
+
+    <!-- REMINDERS -->
+    <div class="doc-section" id="reminders">
+      <div class="doc-eyebrow">Core Concepts</div>
+      <h2>Reminders</h2>
+      <p>When a slot is booked (either directly or via waitlist fill), the system creates two Reminder records: a 24h reminder and a 2h reminder. These are not sent immediately — they&rsquo;re sent when <code>POST /api/reminders</code> is called.</p>
+      <p>In production, call this endpoint on a cron schedule (e.g. every 30 minutes via Vercel Cron Jobs or an external cron service). It processes all reminders where the scheduled time has passed but <code>sentAt</code> is null.</p>
+      <pre><code># Example: cron every 30 minutes via Vercel Cron
+# vercel.json
+{
+  "crons": [
+    {
+      "path": "/api/reminders",
+      "schedule": "*/30 * * * *"
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <!-- SMS -->
+    <div class="doc-section" id="sms">
+      <div class="doc-eyebrow">Core Concepts</div>
+      <h2>SMS System</h2>
+      <p>All SMS sending goes through <code>src/lib/sms.ts</code>, which is an abstraction layer. In local development (no <code>SMS_API_KEY</code> set), it writes messages to the <code>SmsMessage</code> database table instead of sending.</p>
+      <p>To send real SMS, replace the mock implementation with a Plivo or Twilio API call. The function signature is:</p>
+      <pre><code>sendSms({
+  clinicId: string,
+  to: string,       // e.g. "+917400000000"
+  body: string,     // message text
+  tag: string       // label for the SMS log (e.g. "offer", "reminder", "confirmation")
+}): Promise&lt;void&gt;</code></pre>
+      <p>The SMS inbox (<code>/dashboard/sms</code>) shows all outbound messages and lets you simulate YES/NO replies during development.</p>
+      <div class="callout info"><div class="callout-icon">&#128172;</div><div class="callout-text">WhatsApp Business API integration via MSG91 or Gupshup is planned as the primary delivery channel for Indian clinics. The abstraction layer in sms.ts is designed to swap cleanly.</div></div>
+    </div>
+
+    <!-- API AUTH -->
+    <div class="doc-section" id="api-auth">
+      <div class="doc-eyebrow">API Reference</div>
+      <h2>Authentication</h2>
+      <p>Sessions are JWT cookies signed with <code>SESSION_SECRET</code>. The cookie is named <code>slotpilot_session</code>, httpOnly, 7-day expiry. All dashboard API routes require a valid session.</p>
+      <table class="doc-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/auth/signup</code></td><td><span class="badge public">public</span></td><td>Register a new clinic</td></tr>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/auth/login</code></td><td><span class="badge public">public</span></td><td>Login with email + password</td></tr>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/auth/session</code></td><td><span class="badge auth">session</span></td><td>Get current session info</td></tr>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/auth/logout</code></td><td><span class="badge auth">session</span></td><td>Clear session cookie</td></tr>
+        </tbody>
+      </table>
+      <h3>POST /api/auth/login</h3>
+      <pre><code># Request
+{ "email": "demo@slotpilot.com", "password": "demo1234" }
+
+# Response 200
+{ "ok": true, "clinic": { "id": "...", "name": "City Physio", "slug": "city-physio" } }</code></pre>
+    </div>
+
+    <!-- API SLOTS -->
+    <div class="doc-section" id="api-slots">
+      <div class="doc-eyebrow">API Reference</div>
+      <h2>Slots API</h2>
+      <table class="doc-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/slots</code></td><td><span class="badge auth">session</span></td><td>List all slots for the clinic</td></tr>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/slots</code></td><td><span class="badge auth">session</span></td><td>Create a new slot</td></tr>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/slots/[id]</code></td><td><span class="badge auth">session</span></td><td>Get a single slot</td></tr>
+          <tr><td><span class="method patch">PATCH</span></td><td><code>/api/slots/[id]</code></td><td><span class="badge auth">session</span></td><td>Update a slot. Cancelling or marking no-show triggers waitlist cascade.</td></tr>
+          <tr><td><span class="method delete">DELETE</span></td><td><code>/api/slots/[id]</code></td><td><span class="badge auth">session</span></td><td>Delete a slot</td></tr>
+        </tbody>
+      </table>
+      <h3>POST /api/slots — Create slot</h3>
+      <pre><code># Request body
+{
+  "date": "2025-07-20",
+  "time": "14:00",
+  "patientName": "Rajesh Kumar",
+  "appointmentType": "Initial Assessment",
+  "practitioner": "Dr. Singh",  // optional
+  "status": "booked",           // open | booked
+  "notes": ""                   // optional
+}
+
+# Response 201
+{ "id": "slot_abc123", "date": "2025-07-20", "time": "14:00", ... }</code></pre>
+      <h3>PATCH /api/slots/[id] — Update (triggers cascade on cancel)</h3>
+      <pre><code># To cancel and trigger waitlist:
+{ "status": "cancelled" }
+
+# To mark no-show:
+{ "status": "no_show" }
+
+# Response 200
+{ "id": "...", "status": "cancelled", "waitlistTriggered": true }</code></pre>
+    </div>
+
+    <!-- API WAITLIST -->
+    <div class="doc-section" id="api-waitlist">
+      <div class="doc-eyebrow">API Reference</div>
+      <h2>Waitlist API</h2>
+      <div class="callout tip"><div class="callout-icon">&#128161;</div><div class="callout-text">POST (patient join) is public — no authentication required. This is what the public join page uses. All other methods require a session.</div></div>
+      <table class="doc-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/waitlist</code></td><td><span class="badge auth">session</span></td><td>List all waitlist entries for the clinic</td></tr>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/waitlist</code></td><td><span class="badge public">public</span></td><td>Patient adds themselves to the waitlist</td></tr>
+          <tr><td><span class="method patch">PATCH</span></td><td><code>/api/waitlist/[id]</code></td><td><span class="badge auth">session</span></td><td>Update entry (e.g. change priority)</td></tr>
+          <tr><td><span class="method delete">DELETE</span></td><td><code>/api/waitlist/[id]</code></td><td><span class="badge auth">session</span></td><td>Remove from waitlist</td></tr>
+        </tbody>
+      </table>
+      <h3>POST /api/waitlist — Patient joins (public)</h3>
+      <pre><code># Request body
+{
+  "clinicSlug": "city-physio",
+  "patientName": "Priya Mehta",
+  "phone": "+917400000000",
+  "appointmentType": "Initial Assessment",
+  "preferredDays": ["Monday", "Wednesday"],  // optional
+  "notes": ""                                // optional
+}
+
+# Response 201
+{ "id": "wl_xyz", "status": "waiting", "position": 3 }</code></pre>
+    </div>
+
+    <!-- API SMS -->
+    <div class="doc-section" id="api-sms">
+      <div class="doc-eyebrow">API Reference</div>
+      <h2>SMS &amp; Notifications API</h2>
+      <table class="doc-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/sms</code></td><td>List all SMS messages + pending notifications for the clinic</td></tr>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/sms/reply</code></td><td>Simulate a YES or NO reply to a pending notification (dev only)</td></tr>
+        </tbody>
+      </table>
+      <h3>POST /api/sms/reply — Simulate reply</h3>
+      <pre><code># Request body
+{
+  "notificationId": "notif_abc123",
+  "reply": "yes"   // or "no"
+}
+
+# Response 200
+{ "ok": true, "slotFilled": true, "nextPatientNotified": false }</code></pre>
+    </div>
+
+    <!-- API REMINDERS -->
+    <div class="doc-section" id="api-reminders">
+      <div class="doc-eyebrow">API Reference</div>
+      <h2>Reminders API</h2>
+      <table class="doc-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/reminders</code></td><td>List pending and sent reminders</td></tr>
+          <tr><td><span class="method post">POST</span></td><td><code>/api/reminders</code></td><td>Process and send all due reminders. Call this on a cron schedule in production.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- API CLINIC -->
+    <div class="doc-section" id="api-clinic">
+      <div class="doc-eyebrow">API Reference</div>
+      <h2>Clinic API</h2>
+      <table class="doc-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span></td><td><code>/api/clinic</code></td><td>Get clinic profile (name, slug, appointmentTypes, etc.)</td></tr>
+          <tr><td><span class="method patch">PATCH</span></td><td><code>/api/clinic</code></td><td>Update clinic details</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DEPLOY VERCEL -->
+    <div class="doc-section" id="deploy-vercel">
+      <div class="doc-eyebrow">Deployment</div>
+      <h2>Deploy to Vercel</h2>
+      <div class="install-steps">
+        <div class="install-step"><div class="install-num">1</div><div class="install-body"><div class="install-title">Push to GitHub</div><div class="install-desc">Your code should be in a GitHub repository (e.g. <code>github.com/hkpritiranjan/slotpilot</code>).</div></div></div>
+        <div class="install-step"><div class="install-num">2</div><div class="install-body"><div class="install-title">Import on Vercel</div><div class="install-desc">Go to <a href="https://vercel.com/new" style="color:var(--teal)" target="_blank">vercel.com/new</a>, click "Import Git Repository", and select the <code>slotpilot</code> repo.</div></div></div>
+        <div class="install-step"><div class="install-num">3</div><div class="install-body"><div class="install-title">Set environment variables</div><div class="install-desc">In the Vercel project settings, add:</div><pre><code>DATABASE_URL=your-turso-or-libsql-url
+SESSION_SECRET=your-32-char-secret
+NEXT_PUBLIC_APP_URL=https://your-project.vercel.app</code></pre></div></div>
+        <div class="install-step"><div class="install-num">4</div><div class="install-body"><div class="install-title">Deploy</div><div class="install-desc">Click Deploy. Vercel auto-detects Next.js. Every push to <code>main</code> will auto-deploy.</div></div></div>
+      </div>
+      <div class="callout warn"><div class="callout-icon">&#9888;</div><div class="callout-text">SQLite (<code>file:./...</code>) does not work on Vercel's serverless environment — the filesystem is read-only. Use Turso (libSQL cloud) or Supabase (Postgres) for production. See the Database section below.</div></div>
+    </div>
+
+    <!-- DEPLOY DB -->
+    <div class="doc-section" id="deploy-db">
+      <div class="doc-eyebrow">Deployment</div>
+      <h2>Production Database</h2>
+      <p>SlotPilot uses Prisma 7 with the libSQL driver adapter. For production, replace the local SQLite file with Turso (free tier: 500MB, 1B row reads/month):</p>
+      <pre><code># 1. Install Turso CLI
+curl -sSfL https://get.tur.so/install.sh | bash
+
+# 2. Create a database
+turso db create slotpilot-prod
+
+# 3. Get the URL and token
+turso db show slotpilot-prod --url
+turso db tokens create slotpilot-prod
+
+# 4. Set in Vercel environment
+DATABASE_URL=libsql://slotpilot-prod-username.turso.io
+DATABASE_AUTH_TOKEN=your-auth-token</code></pre>
+      <p>Update <code>src/lib/db.ts</code> to use the auth token when it&rsquo;s set:</p>
+      <pre><code>const adapter = new PrismaLibSql({
+  url: process.env.DATABASE_URL!,
+  authToken: process.env.DATABASE_AUTH_TOKEN,  // undefined for local, set for Turso
+});</code></pre>
+    </div>
+
+    <!-- DEPLOY SMS -->
+    <div class="doc-section" id="deploy-sms">
+      <div class="doc-eyebrow">Deployment</div>
+      <h2>Real SMS with Plivo or Twilio</h2>
+      <p>Replace the mock in <code>src/lib/sms.ts</code> with a real API call. Example with Plivo:</p>
+      <pre><code>import Plivo from "plivo";
+
+export async function sendSms({ to, body, clinicId, tag }: SmsParams) {
+  // Log to DB first (for SMS inbox)
+  await db.smsMessage.create({ data: { clinicId, to, body, direction: "out", tag } });
+
+  if (process.env.SMS_API_KEY) {
+    const client = new Plivo.Client(process.env.PLIVO_AUTH_ID, process.env.SMS_API_KEY);
+    await client.messages.create(process.env.SMS_FROM!, to, body);
+  }
+}</code></pre>
+      <p>Set environment variables: <code>PLIVO_AUTH_ID</code>, <code>SMS_API_KEY</code>, <code>SMS_FROM</code>.</p>
+      <div class="callout info"><div class="callout-icon">&#128172;</div><div class="callout-text">For India, Plivo's India DLT registration is required for transactional SMS. Alternatively, MSG91 or Gupshup offer WhatsApp Business API which bypasses DLT for non-promotional messages.</div></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="doc-section" id="faq">
+      <div class="doc-eyebrow">Reference</div>
+      <h2>FAQ</h2>
+      <h3>Does SlotPilot replace Practo?</h3>
+      <p>No. Practo brings new patients via discovery. SlotPilot fills gaps from existing patients who are already waiting. They solve different problems and work together.</p>
+      <h3>What happens if no waitlist patient accepts?</h3>
+      <p>The cascade tries each patient in priority order. If everyone declines or the list is exhausted, the slot remains open — nothing bad happens. You can re-open it or manually book it.</p>
+      <h3>Can I have multiple appointment types?</h3>
+      <p>Yes. Configure as many as you need in clinic settings (e.g. "Initial Assessment, Follow-up, Dry Needling, Sports Massage"). Each type has its own independent waitlist queue.</p>
+      <h3>Does the patient need to download an app?</h3>
+      <p>No. Patients join via a web link, reply by SMS (or WhatsApp soon), and never need to create an account or install anything.</p>
+      <h3>Is the waitlist position first-come-first-served?</h3>
+      <p>Within the same priority tier (normal / high), yes — oldest join date is first. High-priority patients always come before normal-priority patients.</p>
+      <h3>How do I handle multiple practitioners?</h3>
+      <p>Each slot can be assigned to a practitioner. You can filter slots by practitioner in the dashboard. Waitlist matching is currently by appointment type only — practitioner filtering in the waitlist is on the roadmap.</p>
+      <h3>Is this HIPAA compliant?</h3>
+      <p>The local prototype is not designed for US HIPAA compliance. For US deployment, use AWS with a BAA, HIPAA-eligible Twilio/Plivo plans, and end-to-end encryption. For India, there is no equivalent mandatory standard yet, but the app stores minimal patient data (name + phone + appointment type).</p>
+    </div>
+
+    <!-- STACK -->
+    <div class="doc-section" id="stack">
+      <div class="doc-eyebrow">Reference</div>
+      <h2>Tech Stack</h2>
+      <table class="doc-table">
+        <thead><tr><th>Layer</th><th>Technology</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Framework</td><td>Next.js 16 (App Router)</td><td>React Server Components, Route Handlers</td></tr>
+          <tr><td>Language</td><td>TypeScript 5</td><td>Strict mode enabled</td></tr>
+          <tr><td>Database</td><td>SQLite (dev) / libSQL (prod)</td><td>Accessed via Prisma 7 + @prisma/adapter-libsql</td></tr>
+          <tr><td>ORM</td><td>Prisma 7</td><td>Breaking change: no URL in schema, requires driver adapter</td></tr>
+          <tr><td>Auth</td><td>jose JWT</td><td>HS256 signed cookies, stateless sessions</td></tr>
+          <tr><td>Passwords</td><td>bcryptjs</td><td>Cost factor 10</td></tr>
+          <tr><td>Styling</td><td>Tailwind CSS v4</td><td>@import "tailwindcss" syntax</td></tr>
+          <tr><td>Runtime</td><td>Node.js 22</td><td>18+ required</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
+    <div class="footer-links">
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="how-it-works.html">How it works</a>
+      <a class="footer-link" href="docs.html">Docs</a>
+      <a class="footer-link" href="index.html#pricing">Pricing</a>
+      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script>
+const root=document.documentElement,themeBtn=document.getElementById('themeBtn');
+const stored=localStorage.getItem('sp-theme');if(stored)root.dataset.theme=stored;
+themeBtn.addEventListener('click',()=>{const c=root.dataset.theme,s=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light',n=!c?(s==='dark'?'light':'dark'):c==='dark'?'light':'dark';root.dataset.theme=n;localStorage.setItem('sp-theme',n);});
+// Sidebar active link on scroll
+const sections=document.querySelectorAll('.doc-section');
+const links=document.querySelectorAll('.sidebar-link');
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const id=e.target.id;links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+id);});};});},{threshold:0.3,rootMargin:'-80px 0px -60% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
