@@ -89,7 +89,14 @@ pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EE
     <a class="nav-link dark-link" href="how-it-works.html" data-i18n="nav.how">How it works</a>
     <a class="nav-link dark-link active" href="docs.html" data-i18n="nav.docs">Docs</a>
     <button class="nav-theme dark-btn" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
-    <button class="nav-lang dark-btn" id="langBtn" aria-label="हिंदी में बदलें">हि</button>
+    <div class="lang-picker">
+      <button class="lang-trigger dark-btn" id="langTrigger" aria-haspopup="listbox" aria-label="Select language">EN &#9662;</button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <button class="lang-option active" data-lang="en">English</button>
+        <button class="lang-option" data-lang="fr">Français</button>
+        <button class="lang-option" data-lang="ro">Română</button>
+      </div>
+    </div>
     <a class="nav-cta" href="index.html#pricing" data-i18n="nav.startFree">Start free &rarr;</a>
   </div>
 </nav>
@@ -651,6 +658,9 @@ const links=document.querySelectorAll('.sidebar-link');
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const id=e.target.id;links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+id);});};});},{threshold:0.3,rootMargin:'-80px 0px -60% 0px'});
 sections.forEach(s=>obs.observe(s));
 </script>
+<script src="locales/en.js"></script>
+<script src="locales/fr.js"></script>
+<script src="locales/ro.js"></script>
 <script src="i18n.js"></script>
 </body>
 </html>

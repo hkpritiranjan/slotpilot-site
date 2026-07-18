@@ -46,11 +46,18 @@ nav.scrolled-light{background:rgba(255,255,255,0.97);border-color:var(--border);
 .nav-cta:hover{background:#00D4B8;transform:translateY(-1px);}
 .nav-theme{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);cursor:pointer;width:30px;height:30px;border-radius:8px;font-size:13px;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
 .nav-theme.dark-btn{border-color:var(--border);color:var(--ash);}
-.nav-lang{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);cursor:pointer;padding:0 10px;height:30px;border-radius:8px;font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s;white-space:nowrap;letter-spacing:0.01em;}
-.nav-lang:hover{border-color:var(--teal);color:#fff;}
-.nav-lang.dark-btn{border-color:var(--border);color:var(--ash);}
-.nav-lang.dark-btn:hover{border-color:var(--teal);color:var(--ink);}
-@media(max-width:640px){.nav-links .nav-link:not(.nav-cta){display:none;}}
+/* LANGUAGE PICKER */
+.lang-picker{position:relative;}
+.lang-trigger{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);cursor:pointer;padding:0 10px;height:30px;border-radius:8px;font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;gap:2px;transition:border-color .2s,color .2s;white-space:nowrap;letter-spacing:0.02em;}
+.lang-trigger:hover,.lang-trigger:focus-visible{border-color:var(--teal);color:#fff;outline:none;}
+.lang-trigger.dark-btn{border-color:var(--border);color:var(--ash);}
+.lang-trigger.dark-btn:hover{border-color:var(--teal);color:var(--ink);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.14);min-width:130px;overflow:hidden;z-index:200;}
+.lang-dropdown.open{display:block;}
+.lang-option{display:block;width:100%;text-align:left;padding:9px 14px;background:transparent;border:none;font-size:13px;color:var(--ink);cursor:pointer;font-family:inherit;transition:background .15s,color .15s;line-height:1;}
+.lang-option:hover{background:var(--teal-t);}
+.lang-option.active{color:var(--teal);font-weight:700;}
+@media(max-width:640px){.lang-picker{display:none;}.nav-links .nav-link:not(.nav-cta){display:none;}}
 
 /* BUTTONS */
 .btn-primary{background:var(--teal);color:var(--midnight);padding:13px 26px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,191,165,0.25);letter-spacing:-0.01em;display:inline-block;}
