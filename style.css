@@ -46,6 +46,10 @@ nav.scrolled-light{background:rgba(255,255,255,0.97);border-color:var(--border);
 .nav-cta:hover{background:#00D4B8;transform:translateY(-1px);}
 .nav-theme{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);cursor:pointer;width:30px;height:30px;border-radius:8px;font-size:13px;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
 .nav-theme.dark-btn{border-color:var(--border);color:var(--ash);}
+.nav-lang{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);cursor:pointer;padding:0 10px;height:30px;border-radius:8px;font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s;white-space:nowrap;letter-spacing:0.01em;}
+.nav-lang:hover{border-color:var(--teal);color:#fff;}
+.nav-lang.dark-btn{border-color:var(--border);color:var(--ash);}
+.nav-lang.dark-btn:hover{border-color:var(--teal);color:var(--ink);}
 @media(max-width:640px){.nav-links .nav-link:not(.nav-cta){display:none;}}
 
 /* BUTTONS */

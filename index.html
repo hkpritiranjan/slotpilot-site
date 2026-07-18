@@ -146,29 +146,30 @@
 <nav id="nav" class="dark-nav">
   <a class="nav-logo" href="index.html"><span class="dot"></span>SlotPilot</a>
   <div class="nav-links">
-    <a class="nav-link active" href="index.html">Home</a>
-    <a class="nav-link" href="how-it-works.html">How it works</a>
-    <a class="nav-link" href="docs.html">Docs</a>
+    <a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nav-link" href="how-it-works.html" data-i18n="nav.how">How it works</a>
+    <a class="nav-link" href="docs.html" data-i18n="nav.docs">Docs</a>
     <button class="nav-theme" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
-    <a class="nav-cta" href="#pricing">Start free &rarr;</a>
+    <button class="nav-lang" id="langBtn" aria-label="हिंदी में बदलें">हि</button>
+    <a class="nav-cta" href="#pricing" data-i18n="nav.startFree">Start free &rarr;</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow"><span></span>Physiotherapy &middot; dental &middot; chiropractic</div>
-      <h1>Your 2pm just<br>cancelled.<br><em>It's already filled.</em></h1>
-      <p class="hero-sub">SlotPilot automatically texts the <strong>next patient on your waitlist</strong> the moment a slot opens. They confirm in 15 minutes. Your receptionist does nothing.</p>
+      <div class="hero-eyebrow"><span></span><span data-i18n="hero.eyebrow">Physiotherapy &middot; dental &middot; chiropractic</span></div>
+      <h1 data-i18n="hero.h1">Your 2pm just<br>cancelled.<br><em>It's already filled.</em></h1>
+      <p class="hero-sub" data-i18n="hero.sub">SlotPilot automatically texts the <strong>next patient on your waitlist</strong> the moment a slot opens. They confirm in 15 minutes. Your receptionist does nothing.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="#pricing">Start 30-day free trial</a>
-        <a class="btn-ghost-dark" href="how-it-works.html">See how it works</a>
+        <a class="btn-primary" href="#pricing" data-i18n="hero.cta1">Start 30-day free trial</a>
+        <a class="btn-ghost-dark" href="how-it-works.html" data-i18n="hero.cta2">See how it works</a>
       </div>
       <div class="hero-proof">
         <div class="hero-proof-dots">
           <div class="proof-avatar">R</div><div class="proof-avatar">S</div><div class="proof-avatar">A</div>
         </div>
-        <span>Built for clinics losing &#8377;50,000&ndash;&#8377;2L/month to empty slots</span>
+        <span data-i18n="hero.proof">Built for clinics losing &#8377;50,000&ndash;&#8377;2L/month to empty slots</span>
       </div>
     </div>
     <div class="hero-phone">
@@ -201,40 +202,40 @@
 
 <div class="stats">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-value ember">&#8377;80K</div><div class="stat-label">avg monthly revenue lost to no-shows per clinic</div></div>
-    <div class="stat"><div class="stat-value teal">30&ndash;40%</div><div class="stat-label">reduction in no-shows with automated reminders</div></div>
-    <div class="stat"><div class="stat-value white">15 min</div><div class="stat-label">offer window before next patient is tried</div></div>
-    <div class="stat"><div class="stat-value teal">6.2L+</div><div class="stat-label">small clinics in India with no waitlist solution</div></div>
+    <div class="stat"><div class="stat-value ember">&#8377;80K</div><div class="stat-label" data-i18n="stat.1">avg monthly revenue lost to no-shows per clinic</div></div>
+    <div class="stat"><div class="stat-value teal">30&ndash;40%</div><div class="stat-label" data-i18n="stat.2">reduction in no-shows with automated reminders</div></div>
+    <div class="stat"><div class="stat-value white">15 min</div><div class="stat-label" data-i18n="stat.3">offer window before next patient is tried</div></div>
+    <div class="stat"><div class="stat-value teal">6.2L+</div><div class="stat-label" data-i18n="stat.4">small clinics in India with no waitlist solution</div></div>
   </div>
 </div>
 
 <section class="section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">The problem</div>
-    <h2 class="reveal">What happens when a patient cancels today</h2>
-    <p class="section-sub reveal">Every clinic has a &ldquo;waitlist.&rdquo; It&rsquo;s a notebook, a WhatsApp group, or names in someone&rsquo;s head. None of it works when you need it most.</p>
+    <div class="section-eyebrow reveal" data-i18n="prob.eyebrow">The problem</div>
+    <h2 class="reveal" data-i18n="prob.h2">What happens when a patient cancels today</h2>
+    <p class="section-sub reveal" data-i18n="prob.sub">Every clinic has a &ldquo;waitlist.&rdquo; It&rsquo;s a notebook, a WhatsApp group, or names in someone&rsquo;s head. None of it works when you need it most.</p>
     <div class="ba-grid reveal">
       <div class="ba-card">
-        <div class="ba-header before">Without SlotPilot</div>
+        <div class="ba-header before" data-i18n="before.header">Without SlotPilot</div>
         <div class="ba-steps">
-          <div class="ba-step"><div class="ba-icon x">&#10005;</div>Patient cancels by WhatsApp or call</div>
-          <div class="ba-step"><div class="ba-icon x">&#10005;</div>Receptionist opens notebook, starts calling</div>
-          <div class="ba-step"><div class="ba-icon x">&#10005;</div>First 3 numbers don&rsquo;t pick up</div>
-          <div class="ba-step"><div class="ba-icon x">&#10005;</div>4th person already booked elsewhere</div>
-          <div class="ba-step"><div class="ba-icon x">&#10005;</div>20 minutes wasted. Slot still empty.</div>
+          <div class="ba-step"><div class="ba-icon x">&#10005;</div><span data-i18n="before.s1">Patient cancels by WhatsApp or call</span></div>
+          <div class="ba-step"><div class="ba-icon x">&#10005;</div><span data-i18n="before.s2">Receptionist opens notebook, starts calling</span></div>
+          <div class="ba-step"><div class="ba-icon x">&#10005;</div><span data-i18n="before.s3">First 3 numbers don&rsquo;t pick up</span></div>
+          <div class="ba-step"><div class="ba-icon x">&#10005;</div><span data-i18n="before.s4">4th person already booked elsewhere</span></div>
+          <div class="ba-step"><div class="ba-icon x">&#10005;</div><span data-i18n="before.s5">20 minutes wasted. Slot still empty.</span></div>
         </div>
-        <div class="ba-result loss">Slot goes empty &rarr; &#8377;1,500&ndash;&#8377;5,000 lost</div>
+        <div class="ba-result loss" data-i18n="before.result">Slot goes empty &rarr; &#8377;1,500&ndash;&#8377;5,000 lost</div>
       </div>
       <div class="ba-card">
-        <div class="ba-header after">With SlotPilot</div>
+        <div class="ba-header after" data-i18n="after.header">With SlotPilot</div>
         <div class="ba-steps">
-          <div class="ba-step"><div class="ba-icon ok">&#10003;</div>Patient cancels</div>
-          <div class="ba-step"><div class="ba-icon ok">&#10003;</div>Receptionist clicks &ldquo;Cancel&rdquo; on the slot</div>
-          <div class="ba-step"><div class="ba-icon ok">&#10003;</div>System texts next matching waitlist patient instantly</div>
-          <div class="ba-step"><div class="ba-icon ok">&#10003;</div>Patient replies YES in 3 minutes</div>
-          <div class="ba-step"><div class="ba-icon ok">&#10003;</div>Slot booked. Confirmation sent. Done.</div>
+          <div class="ba-step"><div class="ba-icon ok">&#10003;</div><span data-i18n="after.s1">Patient cancels</span></div>
+          <div class="ba-step"><div class="ba-icon ok">&#10003;</div><span data-i18n="after.s2">Receptionist clicks &ldquo;Cancel&rdquo; on the slot</span></div>
+          <div class="ba-step"><div class="ba-icon ok">&#10003;</div><span data-i18n="after.s3">System texts next matching waitlist patient instantly</span></div>
+          <div class="ba-step"><div class="ba-icon ok">&#10003;</div><span data-i18n="after.s4">Patient replies YES in 3 minutes</span></div>
+          <div class="ba-step"><div class="ba-icon ok">&#10003;</div><span data-i18n="after.s5">Slot booked. Confirmation sent. Done.</span></div>
         </div>
-        <div class="ba-result win">Slot filled &rarr; revenue recovered in 15 minutes</div>
+        <div class="ba-result win" data-i18n="after.result">Slot filled &rarr; revenue recovered in 15 minutes</div>
       </div>
     </div>
   </div>
@@ -242,27 +243,27 @@
 
 <section class="section surface-bg" id="how">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">How it works</div>
-    <h2 class="reveal">Three steps. One click from your side.</h2>
-    <p class="section-sub reveal">Everything after step two is automatic. <a href="how-it-works.html" style="color:var(--teal)">See the full walkthrough &rarr;</a></p>
+    <div class="section-eyebrow reveal" data-i18n="how.eyebrow">How it works</div>
+    <h2 class="reveal" data-i18n="how.h2">Three steps. One click from your side.</h2>
+    <p class="section-sub reveal" data-i18n="how.sub">Everything after step two is automatic. <a href="how-it-works.html" style="color:var(--teal)">See the full walkthrough &rarr;</a></p>
     <div class="steps-row reveal">
       <div class="how-step">
         <div class="how-num">1</div>
-        <div class="how-title">Patients join your waitlist</div>
-        <div class="how-desc">Share your unique <em>/join/your-clinic</em> link. Patients fill in name, mobile, and appointment type. No app download required.</div>
-        <span class="how-badge">One-time setup</span>
+        <div class="how-title" data-i18n="how.step1.title">Patients join your waitlist</div>
+        <div class="how-desc" data-i18n="how.step1.desc">Share your unique <em>/join/your-clinic</em> link. Patients fill in name, mobile, and appointment type. No app download required.</div>
+        <span class="how-badge" data-i18n="how.step1.badge">One-time setup</span>
       </div>
       <div class="how-step">
         <div class="how-num">2</div>
-        <div class="how-title">A slot opens</div>
-        <div class="how-desc">Mark a slot as cancelled or no-show in SlotPilot. That&rsquo;s the one action your staff ever takes.</div>
-        <span class="how-badge">15 seconds of staff time</span>
+        <div class="how-title" data-i18n="how.step2.title">A slot opens</div>
+        <div class="how-desc" data-i18n="how.step2.desc">Mark a slot as cancelled or no-show in SlotPilot. That&rsquo;s the one action your staff ever takes.</div>
+        <span class="how-badge" data-i18n="how.step2.badge">15 seconds of staff time</span>
       </div>
       <div class="how-step">
         <div class="how-num">3</div>
-        <div class="how-title">SlotPilot handles the rest</div>
-        <div class="how-desc">System texts the next matching patient, waits for YES/NO, books the slot, confirms, and schedules reminders. All automatic.</div>
-        <span class="how-badge">Zero staff involvement</span>
+        <div class="how-title" data-i18n="how.step3.title">SlotPilot handles the rest</div>
+        <div class="how-desc" data-i18n="how.step3.desc">System texts the next matching patient, waits for YES/NO, books the slot, confirms, and schedules reminders. All automatic.</div>
+        <span class="how-badge" data-i18n="how.step3.badge">Zero staff involvement</span>
       </div>
     </div>
   </div>
@@ -270,19 +271,19 @@
 
 <section class="section" id="features">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Features</div>
-    <h2 class="reveal">Everything a small clinic actually needs</h2>
-    <p class="section-sub reveal">No hospital software. No &#8377;50,000/year enterprise plan. Just the tools to fill empty slots and cut no-shows.</p>
+    <div class="section-eyebrow reveal" data-i18n="feat.eyebrow">Features</div>
+    <h2 class="reveal" data-i18n="feat.h2">Everything a small clinic actually needs</h2>
+    <p class="section-sub reveal" data-i18n="feat.sub">No hospital software. No &#8377;50,000/year enterprise plan. Just the tools to fill empty slots and cut no-shows.</p>
     <div class="features-grid reveal">
-      <div class="feat"><div class="feat-icon">&#9889;</div><div class="feat-title">Automatic SMS cascade</div><div class="feat-desc">Slot opens &rarr; system finds next matching patient &rarr; texts them instantly. No human in the loop.</div></div>
-      <div class="feat"><div class="feat-icon">&#9201;</div><div class="feat-title">15-minute window</div><div class="feat-desc">Patient gets 15 minutes to reply YES. No response or NO? Next person is tried automatically.</div></div>
-      <div class="feat"><div class="feat-icon">&#128276;</div><div class="feat-title">24h + 2h reminders</div><div class="feat-desc">Every booked patient gets automatic reminders — reducing no-show rates by 30&ndash;40%.</div></div>
-      <div class="feat"><div class="feat-icon">&#8679;</div><div class="feat-title">Priority queue</div><div class="feat-desc">Mark urgent patients as high priority. They jump the queue when a slot opens.</div></div>
-      <div class="feat"><div class="feat-icon">&#128279;</div><div class="feat-title">Public join link</div><div class="feat-desc">Shareable link that works on any device. Patients join in 90 seconds, no account needed.</div></div>
-      <div class="feat"><div class="feat-icon">&#127973;</div><div class="feat-title">Multi-practitioner</div><div class="feat-desc">Manage slots for multiple doctors or physios. Each slot assigned to the right provider.</div></div>
-      <div class="feat"><div class="feat-icon">&#128172;</div><div class="feat-title">WhatsApp integration</div><div class="feat-desc">Full WhatsApp Business API via MSG91 or Gupshup. Because Indians answer WhatsApp.</div><span class="feat-coming">Coming soon</span></div>
-      <div class="feat"><div class="feat-icon">&#8377;</div><div class="feat-title">UPI deposit on confirm</div><div class="feat-desc">Charge &#8377;100&ndash;200 when a waitlist patient confirms. No-show loses the deposit.</div><span class="feat-coming">Coming soon</span></div>
-      <div class="feat"><div class="feat-icon">&#128202;</div><div class="feat-title">Recovery dashboard</div><div class="feat-desc">Track recovered slots, saved revenue, and no-show rate trends by month.</div><span class="feat-coming">Coming soon</span></div>
+      <div class="feat"><div class="feat-icon">&#9889;</div><div class="feat-title" data-i18n="feat.1.title">Automatic SMS cascade</div><div class="feat-desc" data-i18n="feat.1.desc">Slot opens &rarr; system finds next matching patient &rarr; texts them instantly. No human in the loop.</div></div>
+      <div class="feat"><div class="feat-icon">&#9201;</div><div class="feat-title" data-i18n="feat.2.title">15-minute window</div><div class="feat-desc" data-i18n="feat.2.desc">Patient gets 15 minutes to reply YES. No response or NO? Next person is tried automatically.</div></div>
+      <div class="feat"><div class="feat-icon">&#128276;</div><div class="feat-title" data-i18n="feat.3.title">24h + 2h reminders</div><div class="feat-desc" data-i18n="feat.3.desc">Every booked patient gets automatic reminders &mdash; reducing no-show rates by 30&ndash;40%.</div></div>
+      <div class="feat"><div class="feat-icon">&#8679;</div><div class="feat-title" data-i18n="feat.4.title">Priority queue</div><div class="feat-desc" data-i18n="feat.4.desc">Mark urgent patients as high priority. They jump the queue when a slot opens.</div></div>
+      <div class="feat"><div class="feat-icon">&#128279;</div><div class="feat-title" data-i18n="feat.5.title">Public join link</div><div class="feat-desc" data-i18n="feat.5.desc">Shareable link that works on any device. Patients join in 90 seconds, no account needed.</div></div>
+      <div class="feat"><div class="feat-icon">&#127973;</div><div class="feat-title" data-i18n="feat.6.title">Multi-practitioner</div><div class="feat-desc" data-i18n="feat.6.desc">Manage slots for multiple doctors or physios. Each slot assigned to the right provider.</div></div>
+      <div class="feat"><div class="feat-icon">&#128172;</div><div class="feat-title" data-i18n="feat.7.title">WhatsApp integration</div><div class="feat-desc" data-i18n="feat.7.desc">Full WhatsApp Business API via MSG91 or Gupshup. Because Indians answer WhatsApp.</div><span class="feat-coming" data-i18n="feat.7.soon">Coming soon</span></div>
+      <div class="feat"><div class="feat-icon">&#8377;</div><div class="feat-title" data-i18n="feat.8.title">UPI deposit on confirm</div><div class="feat-desc" data-i18n="feat.8.desc">Charge &#8377;100&ndash;200 when a waitlist patient confirms. No-show loses the deposit.</div><span class="feat-coming" data-i18n="feat.8.soon">Coming soon</span></div>
+      <div class="feat"><div class="feat-icon">&#128202;</div><div class="feat-title" data-i18n="feat.9.title">Recovery dashboard</div><div class="feat-desc" data-i18n="feat.9.desc">Track recovered slots, saved revenue, and no-show rate trends by month.</div><span class="feat-coming" data-i18n="feat.9.soon">Coming soon</span></div>
     </div>
   </div>
 </section>
@@ -290,10 +291,10 @@
 <div class="practo-section">
   <div class="practo-inner">
     <div class="practo-text">
-      <div class="label">Already on Practo?</div>
-      <h2>Keep Practo. Add SlotPilot.</h2>
-      <p>Practo brings <em>new patients</em> through discovery. SlotPilot fills gaps with patients <em>already waiting</em>. They complement each other — you change nothing about Practo.</p>
-      <p>Clinics using both typically see 15&ndash;20% more utilisation within the first month.</p>
+      <div class="label" data-i18n="practo.label">Already on Practo?</div>
+      <h2 data-i18n="practo.h2">Keep Practo. Add SlotPilot.</h2>
+      <p data-i18n="practo.p1">Practo brings <em>new patients</em> through discovery. SlotPilot fills gaps with patients <em>already waiting</em>. They complement each other &mdash; you change nothing about Practo.</p>
+      <p data-i18n="practo.p2">Clinics using both typically see 15&ndash;20% more utilisation within the first month.</p>
     </div>
     <div class="practo-diagram">
       <div class="prow"><div class="prow-icon blue">P</div><div class="prow-label"><div class="prow-name">Practo</div><div class="prow-job">New patient discovery &amp; bookings</div></div><span class="prow-check comp">Keep it</span></div>
@@ -306,9 +307,9 @@
 <div class="india-bar">
   <div class="india-inner">
     <div class="india-flag">&#127470;&#127475;</div>
-    <div class="india-text"><h3>Built for Indian clinics</h3><p>WhatsApp over SMS, UPI deposits, &#8377; pricing &mdash; not a US product retrofitted for India.</p></div>
+    <div class="india-text"><h3 data-i18n="india.h3">Built for Indian clinics</h3><p data-i18n="india.p">WhatsApp over SMS, UPI deposits, &#8377; pricing &mdash; not a US product retrofitted for India.</p></div>
     <div class="india-tags">
-      <span class="india-tag">Hindi UI coming</span>
+      <span class="india-tag">हि / EN</span>
       <span class="india-tag">WhatsApp first</span>
       <span class="india-tag">UPI deposits</span>
       <span class="india-tag">Tier 2 &amp; 3 cities</span>
@@ -318,52 +319,53 @@
 
 <section class="section pricing-section" id="pricing">
   <div class="section-inner">
-    <div class="section-eyebrow reveal" style="text-align:center">Pricing</div>
-    <h2 class="reveal" style="text-align:center;max-width:100%">Simple. One plan. No surprises.</h2>
-    <p class="section-sub reveal" style="text-align:center;max-width:100%;margin-bottom:40px">One clinic, unlimited slots, unlimited waitlist entries.</p>
+    <div class="section-eyebrow reveal" style="text-align:center" data-i18n="price.eyebrow">Pricing</div>
+    <h2 class="reveal" style="text-align:center;max-width:100%" data-i18n="price.h2">Simple. One plan. No surprises.</h2>
+    <p class="section-sub reveal" style="text-align:center;max-width:100%;margin-bottom:40px" data-i18n="price.sub">One clinic, unlimited slots, unlimited waitlist entries.</p>
     <div class="pricing-card reveal">
       <span class="pricing-badge">30 days free</span>
-      <div class="pricing-plan">Clinic plan</div>
+      <div class="pricing-plan" data-i18n="price.plan">Clinic plan</div>
       <div class="pricing-price"><span class="pricing-currency">&#8377;</span><span class="pricing-amount">999</span><span class="pricing-period">/month</span></div>
-      <div class="pricing-usd">~$12 USD &middot; No credit card for trial</div>
+      <div class="pricing-usd" data-i18n="price.usd">~$12 USD &middot; No credit card for trial</div>
       <div class="pricing-divider"></div>
       <div class="pricing-features">
-        <div class="pf"><div class="pf-check">&#10003;</div>Unlimited appointment slots</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>Unlimited waitlist patients</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>Automatic SMS cascade on cancellation</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>24h + 2h appointment reminders</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>Priority queue management</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>Public patient join link</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>Multi-practitioner support</div>
-        <div class="pf"><div class="pf-check">&#10003;</div>Full SMS inbox &amp; message log</div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f1">Unlimited appointment slots</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f2">Unlimited waitlist patients</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f3">Automatic SMS cascade on cancellation</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f4">24h + 2h appointment reminders</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f5">Priority queue management</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f6">Public patient join link</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f7">Multi-practitioner support</span></div>
+        <div class="pf"><div class="pf-check">&#10003;</div><span data-i18n="price.f8">Full SMS inbox &amp; message log</span></div>
       </div>
-      <a class="btn-full" href="https://github.com/hkpritiranjan/slotpilot">Start free &mdash; no credit card needed</a>
-      <p class="pricing-note">Cancel anytime. Most clinics recover &#8377;999 in their very first recovered slot.</p>
+      <a class="btn-full" href="https://github.com/hkpritiranjan/slotpilot" data-i18n="price.btn">Start free &mdash; no credit card needed</a>
+      <p class="pricing-note" data-i18n="price.note">Cancel anytime. Most clinics recover &#8377;999 in their very first recovered slot.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-section">
-  <h2>Stop losing &#8377;80,000 a month<br>to <em>empty slots</em>.</h2>
-  <p class="cta-sub">Your patients are already waiting. You just need to connect them to the gap.</p>
+  <h2 data-i18n="cta.h2">Stop losing &#8377;80,000 a month<br>to <em>empty slots</em>.</h2>
+  <p class="cta-sub" data-i18n="cta.sub">Your patients are already waiting. You just need to connect them to the gap.</p>
   <div class="cta-actions">
-    <a class="btn-primary" href="#pricing">Start your free trial</a>
-    <a class="btn-ghost-dark" href="how-it-works.html">See how it works</a>
+    <a class="btn-primary" href="#pricing" data-i18n="cta.btn1">Start your free trial</a>
+    <a class="btn-ghost-dark" href="how-it-works.html" data-i18n="cta.btn2">See how it works</a>
   </div>
 </section>
 
 <footer>
   <div class="footer-inner">
-    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
+    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline" data-i18n="footer.tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
     <div class="footer-links">
-      <a class="footer-link" href="index.html">Home</a>
-      <a class="footer-link" href="how-it-works.html">How it works</a>
-      <a class="footer-link" href="docs.html">Docs</a>
-      <a class="footer-link" href="#pricing">Pricing</a>
-      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">GitHub</a>
+      <a class="footer-link" href="index.html" data-i18n="footer.home">Home</a>
+      <a class="footer-link" href="how-it-works.html" data-i18n="footer.how">How it works</a>
+      <a class="footer-link" href="docs.html" data-i18n="footer.docs">Docs</a>
+      <a class="footer-link" href="#pricing" data-i18n="footer.pricing">Pricing</a>
+      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener" data-i18n="footer.github">GitHub</a>
     </div>
   </div>
 </footer>
+<script src="i18n.js"></script>
 <script>
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{if(window.scrollY>40){nav.classList.remove('dark-nav');nav.classList.add('scrolled-dark');}else{nav.classList.add('dark-nav');nav.classList.remove('scrolled-dark');}},{passive:true});

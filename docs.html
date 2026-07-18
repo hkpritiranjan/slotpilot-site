@@ -85,11 +85,12 @@ pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EE
 <nav id="nav" class="light-nav" style="background:rgba(255,255,255,0.97);border-color:var(--border);">
   <a class="nav-logo dark-text" href="index.html"><span class="dot"></span>SlotPilot</a>
   <div class="nav-links">
-    <a class="nav-link dark-link" href="index.html">Home</a>
-    <a class="nav-link dark-link" href="how-it-works.html">How it works</a>
-    <a class="nav-link dark-link active" href="docs.html">Docs</a>
+    <a class="nav-link dark-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nav-link dark-link" href="how-it-works.html" data-i18n="nav.how">How it works</a>
+    <a class="nav-link dark-link active" href="docs.html" data-i18n="nav.docs">Docs</a>
     <button class="nav-theme dark-btn" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
-    <a class="nav-cta" href="index.html#pricing">Start free &rarr;</a>
+    <button class="nav-lang dark-btn" id="langBtn" aria-label="हिंदी में बदलें">हि</button>
+    <a class="nav-cta" href="index.html#pricing" data-i18n="nav.startFree">Start free &rarr;</a>
   </div>
 </nav>
 
@@ -98,12 +99,12 @@ pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EE
   <aside class="sidebar">
     <div class="sidebar-sticky">
       <div class="sidebar-section">
-        <div class="sidebar-label">Overview</div>
+        <div class="sidebar-label" data-i18n="docs.sidebar.overview">Overview</div>
         <a class="sidebar-link active" href="#overview">What is SlotPilot?</a>
         <a class="sidebar-link" href="#architecture">Architecture</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-label">Getting Started</div>
+        <div class="sidebar-label" data-i18n="docs.sidebar.start">Getting Started</div>
         <a class="sidebar-link" href="#prerequisites">Prerequisites</a>
         <a class="sidebar-link" href="#installation">Installation</a>
         <a class="sidebar-link" href="#database">Database setup</a>
@@ -111,7 +112,7 @@ pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EE
         <a class="sidebar-link" href="#first-login">First login</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-label">Core Concepts</div>
+        <div class="sidebar-label" data-i18n="docs.sidebar.concepts">Core Concepts</div>
         <a class="sidebar-link" href="#slots">Slots</a>
         <a class="sidebar-link" href="#waitlist">Waitlist</a>
         <a class="sidebar-link" href="#cascade">Cascade logic</a>
@@ -119,7 +120,7 @@ pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EE
         <a class="sidebar-link" href="#sms">SMS system</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-label">API Reference</div>
+        <div class="sidebar-label" data-i18n="docs.sidebar.api">API Reference</div>
         <a class="sidebar-link" href="#api-auth">Authentication</a>
         <a class="sidebar-link" href="#api-slots">Slots</a>
         <a class="sidebar-link" href="#api-waitlist">Waitlist</a>
@@ -128,13 +129,13 @@ pre code{background:transparent;border:none;padding:0;font-size:13px;color:#E8EE
         <a class="sidebar-link" href="#api-clinic">Clinic</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-label">Deployment</div>
+        <div class="sidebar-label" data-i18n="docs.sidebar.deploy">Deployment</div>
         <a class="sidebar-link" href="#deploy-vercel">Vercel</a>
         <a class="sidebar-link" href="#deploy-db">Production database</a>
         <a class="sidebar-link" href="#deploy-sms">Real SMS (Plivo/Twilio)</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-label">Reference</div>
+        <div class="sidebar-label" data-i18n="docs.sidebar.reference">Reference</div>
         <a class="sidebar-link" href="#faq">FAQ</a>
         <a class="sidebar-link" href="#stack">Tech stack</a>
       </div>
@@ -630,13 +631,13 @@ export async function sendSms({ to, body, clinicId, tag }: SmsParams) {
 
 <footer>
   <div class="footer-inner">
-    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
+    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline" data-i18n="footer.tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
     <div class="footer-links">
-      <a class="footer-link" href="index.html">Home</a>
-      <a class="footer-link" href="how-it-works.html">How it works</a>
-      <a class="footer-link" href="docs.html">Docs</a>
-      <a class="footer-link" href="index.html#pricing">Pricing</a>
-      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">GitHub</a>
+      <a class="footer-link" href="index.html" data-i18n="footer.home">Home</a>
+      <a class="footer-link" href="how-it-works.html" data-i18n="footer.how">How it works</a>
+      <a class="footer-link" href="docs.html" data-i18n="footer.docs">Docs</a>
+      <a class="footer-link" href="index.html#pricing" data-i18n="footer.pricing">Pricing</a>
+      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener" data-i18n="footer.github">GitHub</a>
     </div>
   </div>
 </footer>
@@ -650,5 +651,6 @@ const links=document.querySelectorAll('.sidebar-link');
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const id=e.target.id;links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+id);});};});},{threshold:0.3,rootMargin:'-80px 0px -60% 0px'});
 sections.forEach(s=>obs.observe(s));
 </script>
+<script src="i18n.js"></script>
 </body>
 </html>

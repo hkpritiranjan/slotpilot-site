@@ -91,19 +91,20 @@
 <nav id="nav" class="dark-nav">
   <a class="nav-logo" href="index.html"><span class="dot"></span>SlotPilot</a>
   <div class="nav-links">
-    <a class="nav-link" href="index.html">Home</a>
-    <a class="nav-link active" href="how-it-works.html">How it works</a>
-    <a class="nav-link" href="docs.html">Docs</a>
+    <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nav-link active" href="how-it-works.html" data-i18n="nav.how">How it works</a>
+    <a class="nav-link" href="docs.html" data-i18n="nav.docs">Docs</a>
     <button class="nav-theme" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
-    <a class="nav-cta" href="index.html#pricing">Start free &rarr;</a>
+    <button class="nav-lang" id="langBtn" aria-label="हिंदी में बदलें">हि</button>
+    <a class="nav-cta" href="index.html#pricing" data-i18n="nav.startFree">Start free &rarr;</a>
   </div>
 </nav>
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="page-eyebrow">How it works</div>
-    <h1>From cancelled slot to filled appointment &mdash; in 15 minutes.</h1>
-    <p>SlotPilot automates the entire process of recovering a lost clinic slot. Here&rsquo;s exactly what happens, step by step, from the clinic&rsquo;s perspective and the patient&rsquo;s.</p>
+    <div class="page-eyebrow" data-i18n="hiw.hero.eyebrow">How it works</div>
+    <h1 data-i18n="hiw.hero.h1">From cancelled slot to filled appointment &mdash; in 15 minutes.</h1>
+    <p data-i18n="hiw.hero.p">SlotPilot automates the entire process of recovering a lost clinic slot. Here&rsquo;s exactly what happens, step by step, from the clinic&rsquo;s perspective and the patient&rsquo;s.</p>
   </div>
 </div>
 
@@ -114,21 +115,21 @@
     <div class="tl-step reveal">
       <div class="tl-num"><div class="tl-circle">1</div></div>
       <div class="tl-content">
-        <div class="tl-eyebrow">Setup &mdash; one time</div>
-        <div class="tl-title">Register your clinic and share the join link</div>
-        <div class="tl-desc">Takes 10 minutes. Create a free account, enter your clinic name, configure your appointment types (e.g. Initial Assessment, Follow-up, Dry Needling), and you&rsquo;re given a public link your patients can use to join your waitlist.</div>
+        <div class="tl-eyebrow" data-i18n="hiw.1.eyebrow">Setup &mdash; one time</div>
+        <div class="tl-title" data-i18n="hiw.1.title">Register your clinic and share the join link</div>
+        <div class="tl-desc" data-i18n="hiw.1.desc">Takes 10 minutes. Create a free account, enter your clinic name, configure your appointment types (e.g. Initial Assessment, Follow-up, Dry Needling), and you&rsquo;re given a public link your patients can use to join your waitlist.</div>
         <div class="tl-card">
-          <div class="tl-card-title">What you set up once</div>
+          <div class="tl-card-title" data-i18n="hiw.1.card1">What you set up once</div>
           <div class="tl-items">
-            <div class="tl-item"><div class="tl-dot"></div>Clinic name, address, practitioner names</div>
-            <div class="tl-item"><div class="tl-dot"></div>Appointment types (each type has its own waitlist queue)</div>
-            <div class="tl-item"><div class="tl-dot"></div>Slot duration (15, 30, 45, or 60 minutes)</div>
+            <div class="tl-item"><div class="tl-dot"></div><span data-i18n="hiw.1.li1">Clinic name, address, practitioner names</span></div>
+            <div class="tl-item"><div class="tl-dot"></div><span data-i18n="hiw.1.li2">Appointment types (each type has its own waitlist queue)</span></div>
+            <div class="tl-item"><div class="tl-dot"></div><span data-i18n="hiw.1.li3">Slot duration (15, 30, 45, or 60 minutes)</span></div>
             <div class="tl-item"><div class="tl-dot"></div>Your patient join link: <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:13px;">slotpilot.app/join/your-clinic-name</code></div>
           </div>
         </div>
         <div class="tl-card" style="margin-top:12px;">
-          <div class="tl-card-title">How patients join your waitlist</div>
-          <div class="tl-desc" style="margin-bottom:0">Share the link anywhere: WhatsApp, your email footer, a printed card at reception, your Practo profile bio, Instagram bio. Patients open it on their phone, enter name + mobile number + which appointment type they need, and they&rsquo;re in. No app, no account, 90 seconds.</div>
+          <div class="tl-card-title" data-i18n="hiw.1.card2">How patients join your waitlist</div>
+          <div class="tl-desc" style="margin-bottom:0" data-i18n="hiw.1.card2p">Share the link anywhere: WhatsApp, your email footer, a printed card at reception, your Practo profile bio, Instagram bio. Patients open it on their phone, enter name + mobile number + which appointment type they need, and they&rsquo;re in. No app, no account, 90 seconds.</div>
         </div>
       </div>
     </div>
@@ -137,9 +138,9 @@
     <div class="tl-step reveal">
       <div class="tl-num"><div class="tl-circle">2</div></div>
       <div class="tl-content">
-        <div class="tl-eyebrow">Daily workflow</div>
-        <div class="tl-title">A patient cancels (or doesn&rsquo;t show up)</div>
-        <div class="tl-desc">When a booked patient cancels by call or WhatsApp, your receptionist opens SlotPilot and clicks <strong>Cancel</strong> on that slot. If a patient simply didn&rsquo;t show up, they click <strong>No-show</strong>. That&rsquo;s the only action your staff takes.</div>
+        <div class="tl-eyebrow" data-i18n="hiw.2.eyebrow">Daily workflow</div>
+        <div class="tl-title" data-i18n="hiw.2.title">A patient cancels (or doesn&rsquo;t show up)</div>
+        <div class="tl-desc" data-i18n="hiw.2.desc">When a booked patient cancels by call or WhatsApp, your receptionist opens SlotPilot and clicks <strong>Cancel</strong> on that slot. If a patient simply didn&rsquo;t show up, they click <strong>No-show</strong>. That&rsquo;s the only action your staff takes.</div>
         <div class="screen-grid">
           <div class="mock-screen">
             <div class="mock-header"><div class="mock-dots"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div></div><div class="mock-url">slotpilot.app/dashboard/slots</div></div>
@@ -178,11 +179,11 @@
     <div class="tl-step reveal">
       <div class="tl-num"><div class="tl-circle">3</div></div>
       <div class="tl-content">
-        <div class="tl-eyebrow">Automatic</div>
-        <div class="tl-title">SlotPilot texts the next patient on the waitlist</div>
-        <div class="tl-desc">The system scans the waitlist for the next patient who needs an <em>Initial Assessment</em> (matching the cancelled slot&rsquo;s type), ordered by priority then join date. It sends them an SMS instantly.</div>
+        <div class="tl-eyebrow" data-i18n="hiw.3.eyebrow">Automatic</div>
+        <div class="tl-title" data-i18n="hiw.3.title">SlotPilot texts the next patient on the waitlist</div>
+        <div class="tl-desc" data-i18n="hiw.3.desc">The system scans the waitlist for the next patient who needs an <em>Initial Assessment</em> (matching the cancelled slot&rsquo;s type), ordered by priority then join date. It sends them an SMS instantly.</div>
         <div class="tl-card">
-          <div class="tl-card-title">The SMS patients receive</div>
+          <div class="tl-card-title" data-i18n="hiw.3.sms.label">The SMS patients receive</div>
           <div style="background:var(--midnight);border-radius:10px;padding:16px;margin-top:4px;">
             <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px;">SMS &rarr; Priya Mehta (+91 9876543210)</div>
             <div style="background:rgba(0,191,165,1);color:#0B1A3B;padding:10px 14px;border-radius:10px;border-bottom-right-radius:2px;font-size:14px;line-height:1.5;font-weight:500;">
@@ -198,12 +199,12 @@
     <div class="tl-step reveal">
       <div class="tl-num"><div class="tl-circle">4</div></div>
       <div class="tl-content">
-        <div class="tl-eyebrow">15-minute window</div>
-        <div class="tl-title">Patient replies YES &mdash; slot is booked instantly</div>
-        <div class="tl-desc">If the patient replies YES within 15 minutes, the slot is booked under their name, a confirmation SMS is sent, and the slot card in your dashboard updates immediately. Your receptionist sees this happen — they don&rsquo;t do anything.</div>
-        <div class="tl-desc">If the patient replies NO, or doesn&rsquo;t respond in 15 minutes, the cascade moves on automatically to the next person on the list.</div>
+        <div class="tl-eyebrow" data-i18n="hiw.4.eyebrow">15-minute window</div>
+        <div class="tl-title" data-i18n="hiw.4.title">Patient replies YES &mdash; slot is booked instantly</div>
+        <div class="tl-desc" data-i18n="hiw.4.desc1">If the patient replies YES within 15 minutes, the slot is booked under their name, a confirmation SMS is sent, and the slot card in your dashboard updates immediately. Your receptionist sees this happen — they don&rsquo;t do anything.</div>
+        <div class="tl-desc" data-i18n="hiw.4.desc2">If the patient replies NO, or doesn&rsquo;t respond in 15 minutes, the cascade moves on automatically to the next person on the list.</div>
         <div class="cascade">
-          <div class="cascade-title">Example cascade — what happens when patient #1 says NO</div>
+          <div class="cascade-title" data-i18n="hiw.4.cascade">Example cascade — what happens when patient #1 says NO</div>
           <div class="cascade-row"><div class="cas-num">1</div><div class="cas-name">Priya Mehta &mdash; Initial Assessment</div><span class="cas-action no">Said NO</span></div>
           <div class="cascade-row"><div class="cas-num">2</div><div class="cas-name">Arjun Singh &mdash; Initial Assessment</div><span class="cas-action sent">SMS sent</span></div>
           <div class="cascade-row"><div class="cas-num no">&#9650;</div><div class="cas-name" style="color:var(--ember);">Kavya Reddy &mdash; Priority patient</div><span class="cas-action booked">&#10003; Booked</span></div>
@@ -217,11 +218,11 @@
     <div class="tl-step reveal">
       <div class="tl-num"><div class="tl-circle">5</div></div>
       <div class="tl-content">
-        <div class="tl-eyebrow">Automatic reminders</div>
-        <div class="tl-title">Reminders go out automatically &mdash; no action needed</div>
-        <div class="tl-desc">Every booked patient (including waitlist fills and original bookings) automatically receives reminder SMS messages. This reduces no-show rates by 30&ndash;40%.</div>
+        <div class="tl-eyebrow" data-i18n="hiw.5.eyebrow">Automatic reminders</div>
+        <div class="tl-title" data-i18n="hiw.5.title">Reminders go out automatically &mdash; no action needed</div>
+        <div class="tl-desc" data-i18n="hiw.5.desc">Every booked patient (including waitlist fills and original bookings) automatically receives reminder SMS messages. This reduces no-show rates by 30&ndash;40%.</div>
         <div class="tl-card">
-          <div class="tl-card-title">Reminder schedule for a 2:00 PM appointment</div>
+          <div class="tl-card-title" data-i18n="hiw.5.card">Reminder schedule for a 2:00 PM appointment</div>
           <div class="tl-items" style="gap:0">
             <div class="reminder-row">
               <div class="reminder-time">Day before<br><span style="font-size:11px;color:var(--ash)">2:00 PM</span></div>
@@ -249,51 +250,52 @@
 <!-- PRACTO WORKFLOW -->
 <section class="section surface-bg">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Clinic workflows</div>
-    <h2 class="reveal">Works the same whether you use Practo or not</h2>
-    <p class="section-sub reveal">SlotPilot doesn&rsquo;t replace your booking system. It plugs into the gap: the slot that just opened that your booking system can&rsquo;t fill automatically.</p>
+    <div class="section-eyebrow reveal" data-i18n="hiw.tips.eyebrow">Clinic workflows</div>
+    <h2 class="reveal" data-i18n="hiw.tips.h2">Works the same whether you use Practo or not</h2>
+    <p class="section-sub reveal" data-i18n="hiw.tips.sub">SlotPilot doesn&rsquo;t replace your booking system. It plugs into the gap: the slot that just opened that your booking system can&rsquo;t fill automatically.</p>
     <div class="tips-grid reveal">
       <div class="tip">
-        <div class="tip-label">&#128203; Clinic using Practo</div>
-        <div class="tip-text">New patients book via Practo as normal. Your existing patients who&rsquo;ve asked to be notified of openings join your SlotPilot waitlist. When a Practo booking cancels, you mark it in SlotPilot. It fills the gap from your local waitlist — Practo never knows, and you don&rsquo;t have to chase anyone.</div>
+        <div class="tip-label" data-i18n="hiw.tip1.label">&#128203; Clinic using Practo</div>
+        <div class="tip-text" data-i18n="hiw.tip1.text">New patients book via Practo as normal. Your existing patients who&rsquo;ve asked to be notified of openings join your SlotPilot waitlist. When a Practo booking cancels, you mark it in SlotPilot. It fills the gap from your local waitlist — Practo never knows, and you don&rsquo;t have to chase anyone.</div>
       </div>
       <div class="tip">
-        <div class="tip-label">&#128203; Clinic without Practo</div>
-        <div class="tip-text">Most of your patients come by word-of-mouth or walk-in. You add their upcoming bookings to SlotPilot manually. Patients who call asking about openings are told to join the waitlist via the link. When anything cancels, SlotPilot handles the recovery — you don&rsquo;t call anyone.</div>
+        <div class="tip-label" data-i18n="hiw.tip2.label">&#128203; Clinic without Practo</div>
+        <div class="tip-text" data-i18n="hiw.tip2.text">Most of your patients come by word-of-mouth or walk-in. You add their upcoming bookings to SlotPilot manually. Patients who call asking about openings are told to join the waitlist via the link. When anything cancels, SlotPilot handles the recovery — you don&rsquo;t call anyone.</div>
       </div>
       <div class="tip">
-        <div class="tip-label">&#8679; Priority queue use case</div>
-        <div class="tip-text">A post-surgery patient needs physiotherapy within the week but your calendar is full. Add them to the waitlist and mark them as <strong>high priority</strong>. The next time any Initial Assessment cancels, they&rsquo;re the first person texted — before any standard waitlist patient.</div>
+        <div class="tip-label" data-i18n="hiw.tip3.label">&#8679; Priority queue use case</div>
+        <div class="tip-text" data-i18n="hiw.tip3.text">A post-surgery patient needs physiotherapy within the week but your calendar is full. Add them to the waitlist and mark them as <strong>high priority</strong>. The next time any Initial Assessment cancels, they&rsquo;re the first person texted — before any standard waitlist patient.</div>
       </div>
       <div class="tip">
-        <div class="tip-label">&#128172; WhatsApp (coming soon)</div>
-        <div class="tip-text">SMS delivery in India can be unreliable. The WhatsApp Business API integration will replace SMS entirely — same YES/NO reply flow, but through WhatsApp where Indian patients actually respond. Expected in the next release.</div>
+        <div class="tip-label" data-i18n="hiw.tip4.label">&#128172; WhatsApp (coming soon)</div>
+        <div class="tip-text" data-i18n="hiw.tip4.text">SMS delivery in India can be unreliable. The WhatsApp Business API integration will replace SMS entirely — same YES/NO reply flow, but through WhatsApp where Indian patients actually respond. Expected in the next release.</div>
       </div>
     </div>
   </div>
 </section>
 
 <div class="cta-bar">
-  <h2>Ready to stop losing slots?</h2>
-  <p>30-day free trial. No credit card. Setup in 10 minutes.</p>
+  <h2 data-i18n="hiw.cta.h2">Ready to stop losing slots?</h2>
+  <p data-i18n="hiw.cta.p">30-day free trial. No credit card. Setup in 10 minutes.</p>
   <div class="cta-bar-btns">
-    <a class="btn-primary" href="index.html#pricing">Start free trial</a>
-    <a class="btn-ghost-dark" href="docs.html">Read the docs</a>
+    <a class="btn-primary" href="index.html#pricing" data-i18n="hiw.cta.btn1">Start free trial</a>
+    <a class="btn-ghost-dark" href="docs.html" data-i18n="hiw.cta.btn2">Read the docs</a>
   </div>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
+    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline" data-i18n="footer.tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
     <div class="footer-links">
-      <a class="footer-link" href="index.html">Home</a>
-      <a class="footer-link" href="how-it-works.html">How it works</a>
-      <a class="footer-link" href="docs.html">Docs</a>
-      <a class="footer-link" href="index.html#pricing">Pricing</a>
-      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">GitHub</a>
+      <a class="footer-link" href="index.html" data-i18n="footer.home">Home</a>
+      <a class="footer-link" href="how-it-works.html" data-i18n="footer.how">How it works</a>
+      <a class="footer-link" href="docs.html" data-i18n="footer.docs">Docs</a>
+      <a class="footer-link" href="index.html#pricing" data-i18n="footer.pricing">Pricing</a>
+      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener" data-i18n="footer.github">GitHub</a>
     </div>
   </div>
 </footer>
+<script src="i18n.js"></script>
 <script>
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{if(window.scrollY>40){nav.classList.remove('dark-nav');nav.classList.add('scrolled-dark');}else{nav.classList.add('dark-nav');nav.classList.remove('scrolled-dark');}},{passive:true});
