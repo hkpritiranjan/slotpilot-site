@@ -7,7 +7,7 @@
   'use strict';
 
   var STORAGE_KEY = 'sp-lang';
-  var SUPPORTED   = ['en', 'fr', 'ro'];
+  var SUPPORTED   = ['en', 'fr', 'ro', 'de', 'es', 'it', 'pt', 'ja'];
   var DEFAULT     = 'en';
 
   function getLang() {
