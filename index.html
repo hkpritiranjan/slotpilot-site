@@ -90,6 +90,7 @@
 .feat-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-0.01em;}
 .feat-desc{font-size:13px;color:var(--ash);line-height:1.6;}
 .feat-coming{display:inline-block;margin-top:8px;font-size:11px;color:var(--ash);background:var(--border);padding:2px 8px;border-radius:100px;}
+.feat-live{display:inline-block;margin-top:8px;font-size:11px;color:var(--teal);background:var(--teal-t);padding:2px 8px;border-radius:100px;font-weight:600;}
 /* PRACTO */
 .practo-section{background:var(--midnight);padding:64px 5vw;}
 .practo-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
@@ -149,6 +150,7 @@
     <a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a>
     <a class="nav-link" href="how-it-works.html" data-i18n="nav.how">How it works</a>
     <a class="nav-link" href="docs.html" data-i18n="nav.docs">Docs</a>
+    <a class="nav-link" href="progress.html" data-i18n="nav.progress">Progress</a>
     <button class="nav-theme" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
     <div class="lang-picker">
       <button class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-label="Select language">EN &#9662;</button>
@@ -293,7 +295,8 @@
       <div class="feat"><div class="feat-icon">&#8679;</div><div class="feat-title" data-i18n="feat.4.title">Priority queue</div><div class="feat-desc" data-i18n="feat.4.desc">Mark urgent patients as high priority. They jump the queue when a slot opens.</div></div>
       <div class="feat"><div class="feat-icon">&#128279;</div><div class="feat-title" data-i18n="feat.5.title">Public join link</div><div class="feat-desc" data-i18n="feat.5.desc">Shareable link that works on any device. Patients join in 90 seconds, no account needed.</div></div>
       <div class="feat"><div class="feat-icon">&#127973;</div><div class="feat-title" data-i18n="feat.6.title">Multi-practitioner</div><div class="feat-desc" data-i18n="feat.6.desc">Manage slots for multiple doctors or physios. Each slot assigned to the right provider.</div></div>
-      <div class="feat"><div class="feat-icon">&#128172;</div><div class="feat-title" data-i18n="feat.7.title">WhatsApp integration</div><div class="feat-desc" data-i18n="feat.7.desc">Full WhatsApp Business API via MSG91 or Gupshup. Because Indians answer WhatsApp.</div><span class="feat-coming" data-i18n="feat.7.soon">Coming soon</span></div>
+      <div class="feat"><div class="feat-icon">&#128172;</div><div class="feat-title" data-i18n="feat.7.title">WhatsApp integration</div><div class="feat-desc" data-i18n="feat.7.desc">Live via Twilio WhatsApp. Patients reply YES on WhatsApp &mdash; slot auto-books. No staff needed.</div><span class="feat-live" data-i18n="feat.7.live">&#10003;&nbsp;Live</span></div>
+      <div class="feat"><div class="feat-icon">&#9724;</div><div class="feat-title" data-i18n="feat.10.title">Visual calendar</div><div class="feat-desc" data-i18n="feat.10.desc">Week and month view of all your slots. Drag directly on the grid to create a slot &mdash; no form to fill.</div><span class="feat-live" data-i18n="feat.10.live">&#10003;&nbsp;Live</span></div>
       <div class="feat"><div class="feat-icon">&#8377;</div><div class="feat-title" data-i18n="feat.8.title">UPI deposit on confirm</div><div class="feat-desc" data-i18n="feat.8.desc">Charge &#8377;100&ndash;200 when a waitlist patient confirms. No-show loses the deposit.</div><span class="feat-coming" data-i18n="feat.8.soon">Coming soon</span></div>
       <div class="feat"><div class="feat-icon">&#128202;</div><div class="feat-title" data-i18n="feat.9.title">Recovery dashboard</div><div class="feat-desc" data-i18n="feat.9.desc">Track recovered slots, saved revenue, and no-show rate trends by month.</div><span class="feat-coming" data-i18n="feat.9.soon">Coming soon</span></div>
     </div>
@@ -372,6 +375,7 @@
       <a class="footer-link" href="index.html" data-i18n="footer.home">Home</a>
       <a class="footer-link" href="how-it-works.html" data-i18n="footer.how">How it works</a>
       <a class="footer-link" href="docs.html" data-i18n="footer.docs">Docs</a>
+      <a class="footer-link" href="progress.html" data-i18n="footer.progress">Progress</a>
       <a class="footer-link" href="#pricing" data-i18n="footer.pricing">Pricing</a>
       <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener" data-i18n="footer.github">GitHub</a>
     </div>

@@ -1,8 +1,8 @@
 (function () {
   window.SP_LOCALES = window.SP_LOCALES || {};
   window.SP_LOCALES.pt = {
-    'nav.home': 'Início', 'nav.how': 'Como funciona', 'nav.docs': 'Documentação', 'nav.startFree': 'Começar grátis &rarr;',
-    'footer.tagline': 'Lista de espera automatizada &amp; recuperação de faltas para pequenas clínicas', 'footer.home': 'Início', 'footer.how': 'Como funciona', 'footer.docs': 'Documentação', 'footer.pricing': 'Preços', 'footer.github': 'GitHub',
+    'nav.home': 'Início', 'nav.how': 'Como funciona', 'nav.docs': 'Documentação', 'nav.progress': 'Progresso', 'nav.startFree': 'Começar grátis &rarr;',
+    'footer.tagline': 'Lista de espera automatizada &amp; recuperação de faltas para pequenas clínicas', 'footer.home': 'Início', 'footer.how': 'Como funciona', 'footer.docs': 'Documentação', 'footer.progress': 'Progresso', 'footer.pricing': 'Preços', 'footer.github': 'GitHub',
     'hero.eyebrow': 'Para clínicas que não podem ter consultas por preencher',
     'hero.h1': 'A sua consulta das 14h<br>acabou de ser cancelada.<br><em>Já está ocupada.</em>',
     'hero.sub': 'O SlotPilot envia automaticamente um SMS ao <strong>próximo paciente na lista de espera</strong> assim que uma vaga se liberta. Confirma em 15 minutos. A sua recepcionista não faz nada.',
@@ -26,7 +26,7 @@
     'feat.4.title': 'Fila de prioridade', 'feat.4.desc': 'Marque os pacientes urgentes como alta prioridade. Passam à frente quando uma vaga fica livre.',
     'feat.5.title': 'Link público de inscrição', 'feat.5.desc': 'Link partilhável que funciona em qualquer dispositivo. Os pacientes inscrevem-se em 90 segundos, sem conta.',
     'feat.6.title': 'Multi-profissional', 'feat.6.desc': 'Gira vagas para vários médicos ou fisioterapeutas. Cada vaga atribuída ao profissional certo.',
-    'feat.7.title': 'Integração WhatsApp', 'feat.7.desc': 'API WhatsApp Business completa. Porque os pacientes respondem no WhatsApp.', 'feat.7.soon': 'Em breve',
+    'feat.7.title': 'Integração WhatsApp', 'feat.7.desc': 'Ao vivo via Twilio WhatsApp. Os pacientes respondem SIM &mdash; o slot &eacute; reservado automaticamente.', 'feat.7.live': '&#10003;&nbsp;Ao vivo', 'feat.10.title': 'Calend&aacute;rio visual', 'feat.10.desc': 'Vista semanal e mensal de todos os slots. Arraste na grade para criar um slot.', 'feat.10.live': '&#10003;&nbsp;Ao vivo',
     'feat.8.title': 'Depósito na confirmação', 'feat.8.desc': 'Cobre um depósito de 10&ndash;20&nbsp;€ quando um paciente da lista confirma. A falta implica perda do depósito.', 'feat.8.soon': 'Em breve',
     'feat.9.title': 'Painel de recuperação', 'feat.9.desc': 'Acompanhe as vagas recuperadas, a receita poupada e as tendências de faltas mês a mês.', 'feat.9.soon': 'Em breve',
     'practo.label': 'Já usa uma plataforma de marcações?', 'practo.h2': 'Mantenha-a. Adicione o SlotPilot.',

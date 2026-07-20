@@ -1,8 +1,8 @@
 (function () {
   window.SP_LOCALES = window.SP_LOCALES || {};
   window.SP_LOCALES.de = {
-    'nav.home': 'Startseite', 'nav.how': 'So funktioniert es', 'nav.docs': 'Dokumentation', 'nav.startFree': 'Kostenlos starten &rarr;',
-    'footer.tagline': 'Automatisierte Warteliste &amp; Ausfallmanagement für kleine Praxen', 'footer.home': 'Startseite', 'footer.how': 'So funktioniert es', 'footer.docs': 'Dokumentation', 'footer.pricing': 'Preise', 'footer.github': 'GitHub',
+    'nav.home': 'Startseite', 'nav.how': 'So funktioniert es', 'nav.docs': 'Dokumentation', 'nav.progress': 'Fortschritt', 'nav.startFree': 'Kostenlos starten &rarr;',
+    'footer.tagline': 'Automatisierte Warteliste &amp; Ausfallmanagement für kleine Praxen', 'footer.home': 'Startseite', 'footer.how': 'So funktioniert es', 'footer.docs': 'Dokumentation', 'footer.progress': 'Fortschritt', 'footer.pricing': 'Preise', 'footer.github': 'GitHub',
     'hero.eyebrow': 'Für Praxen, die sich leere Termine nicht leisten können',
     'hero.h1': 'Ihr 14-Uhr-Termin<br>wurde abgesagt.<br><em>Er ist bereits neu besetzt.</em>',
     'hero.sub': 'SlotPilot sendet automatisch eine SMS an den <strong>nächsten Patienten auf Ihrer Warteliste</strong>, sobald ein Termin frei wird. Bestätigung in 15 Minuten. Ihre Rezeption muss nichts tun.',
@@ -29,7 +29,7 @@
     'feat.4.title': 'Prioritätswarteschlange', 'feat.4.desc': 'Markieren Sie dringende Patienten mit hoher Priorität. Sie rücken vor, wenn ein Termin frei wird.',
     'feat.5.title': 'Öffentlicher Beitrittslink', 'feat.5.desc': 'Teilbarer Link, der auf jedem Gerät funktioniert. Patienten treten in 90 Sekunden bei, kein Konto erforderlich.',
     'feat.6.title': 'Mehrere Behandler', 'feat.6.desc': 'Termine für mehrere Ärzte oder Therapeuten verwalten. Jeder Termin dem richtigen Anbieter zugewiesen.',
-    'feat.7.title': 'WhatsApp-Integration', 'feat.7.desc': 'Vollständige WhatsApp Business API. Weil Patienten auf WhatsApp antworten.', 'feat.7.soon': 'Demnächst',
+    'feat.7.title': 'WhatsApp-Integration', 'feat.7.desc': 'Live &uuml;ber Twilio WhatsApp. Patienten antworten JA &mdash; Slot wird automatisch gebucht.', 'feat.7.live': '&#10003;&nbsp;Live', 'feat.10.title': 'Visueller Kalender', 'feat.10.desc': 'Wochen- und Monatsansicht aller Slots. Auf dem Raster ziehen, um Slots direkt zu erstellen.', 'feat.10.live': '&#10003;&nbsp;Live',
     'feat.8.title': 'Anzahlung bei Bestätigung', 'feat.8.desc': 'Verlangen Sie 10&ndash;20&nbsp;€ Anzahlung bei Bestätigung. Nicht-Erscheinen bedeutet Verlust der Anzahlung.', 'feat.8.soon': 'Demnächst',
     'feat.9.title': 'Rückgewinnungs-Dashboard', 'feat.9.desc': 'Verfolgen Sie zurückgewonnene Termine, gesparte Einnahmen und Ausfalltrends monatlich.', 'feat.9.soon': 'Demnächst',
     'practo.label': 'Nutzen Sie bereits eine Buchungsplattform?', 'practo.h2': 'Behalten Sie sie. Fügen Sie SlotPilot hinzu.',

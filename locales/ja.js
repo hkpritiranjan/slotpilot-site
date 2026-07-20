@@ -1,8 +1,8 @@
 (function () {
   window.SP_LOCALES = window.SP_LOCALES || {};
   window.SP_LOCALES.ja = {
-    'nav.home': 'ホーム', 'nav.how': '使い方', 'nav.docs': 'ドキュメント', 'nav.startFree': '無料で始める &rarr;',
-    'footer.tagline': '小規模クリニック向けの自動キャンセル待ち &amp; 空き枠回収システム', 'footer.home': 'ホーム', 'footer.how': '使い方', 'footer.docs': 'ドキュメント', 'footer.pricing': '料金', 'footer.github': 'GitHub',
+    'nav.home': 'ホーム', 'nav.how': '使い方', 'nav.docs': 'ドキュメント', 'nav.progress': '進捗', 'nav.startFree': '無料で始める &rarr;',
+    'footer.tagline': '小規模クリニック向けの自動キャンセル待ち &amp; 空き枠回収システム', 'footer.home': 'ホーム', 'footer.how': '使い方', 'footer.docs': 'ドキュメント', 'footer.progress': '進捗', 'footer.pricing': '料金', 'footer.github': 'GitHub',
     'hero.eyebrow': '空き枠を無駄にできないクリニックのために',
     'hero.h1': '14時の予約が<br>キャンセルされました。<br><em>もう埋まっています。</em>',
     'hero.sub': 'SlotPilotは枠が空いた瞬間、<strong>キャンセル待ちリストの次の患者</strong>に自動でSMSを送信。15分以内に確認が完了します。受付スタッフは何もしなくて大丈夫です。',
@@ -26,7 +26,7 @@
     'feat.4.title': '優先キュー', 'feat.4.desc': '緊急の患者を高優先度でマーク。空き枠が出たときに順番が繰り上がります。',
     'feat.5.title': '公開登録リンク', 'feat.5.desc': 'あらゆるデバイスで使える共有リンク。患者はアカウント不要で90秒で登録完了。',
     'feat.6.title': 'マルチ担当医対応', 'feat.6.desc': '複数の医師や理学療法士の枠を管理。各枠を適切な担当者に割り当て。',
-    'feat.7.title': 'WhatsApp連携', 'feat.7.desc': 'WhatsApp Business API完全対応。患者がWhatsAppで返答するから。', 'feat.7.soon': '近日公開',
+    'feat.7.title': 'WhatsApp連携', 'feat.7.desc': 'Twilio WhatsApp経由でライブ稼働中。患者がYESと返信するとスロットが自動予約されます。', 'feat.7.live': '&#10003;&nbsp;ライブ', 'feat.10.title': 'ビジュアルカレンダー', 'feat.10.desc': '週・月表示でスロットを一覧表示。グリッドをドラッグしてスロットを作成できます。', 'feat.10.live': '&#10003;&nbsp;ライブ',
     'feat.8.title': '確認時デポジット', 'feat.8.desc': 'キャンセル待ちの患者が確認した際にデポジットを徴収。無断キャンセルの場合はデポジット没収。', 'feat.8.soon': '近日公開',
     'feat.9.title': '回収ダッシュボード', 'feat.9.desc': '回収済み枠数、節約した収益、無断キャンセルのトレンドを月次で追跡。', 'feat.9.soon': '近日公開',
     'practo.label': '既に予約プラットフォームをお使いですか？', 'practo.h2': 'そのまま使い続けてください。SlotPilotを追加するだけ。',

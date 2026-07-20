@@ -1,8 +1,8 @@
 (function () {
   window.SP_LOCALES = window.SP_LOCALES || {};
   window.SP_LOCALES.it = {
-    'nav.home': 'Home', 'nav.how': 'Come funziona', 'nav.docs': 'Documentazione', 'nav.startFree': 'Inizia gratis &rarr;',
-    'footer.tagline': 'Lista d\'attesa automatizzata &amp; recupero delle assenze per piccoli studi', 'footer.home': 'Home', 'footer.how': 'Come funziona', 'footer.docs': 'Documentazione', 'footer.pricing': 'Prezzi', 'footer.github': 'GitHub',
+    'nav.home': 'Home', 'nav.how': 'Come funziona', 'nav.docs': 'Documentazione', 'nav.progress': 'Avanzamento', 'nav.startFree': 'Inizia gratis &rarr;',
+    'footer.tagline': 'Lista d\'attesa automatizzata &amp; recupero delle assenze per piccoli studi', 'footer.home': 'Home', 'footer.how': 'Come funziona', 'footer.docs': 'Documentazione', 'footer.progress': 'Avanzamento', 'footer.pricing': 'Prezzi', 'footer.github': 'GitHub',
     'hero.eyebrow': 'Per gli studi che non possono permettersi appuntamenti vuoti',
     'hero.h1': 'Il suo appuntamento delle 14:00<br>è appena stato cancellato.<br><em>È già stato riempito.</em>',
     'hero.sub': 'SlotPilot invia automaticamente un SMS al <strong>prossimo paziente nella lista d\'attesa</strong> non appena si libera uno slot. Conferma in 15 minuti. La sua segretaria non fa nulla.',
@@ -26,7 +26,7 @@
     'feat.4.title': 'Coda prioritaria', 'feat.4.desc': 'Segna i pazienti urgenti come alta priorità. Scavalcano la fila quando si libera uno slot.',
     'feat.5.title': 'Link pubblico di iscrizione', 'feat.5.desc': 'Link condivisibile che funziona su qualsiasi dispositivo. I pazienti si iscrivono in 90 secondi, senza account.',
     'feat.6.title': 'Multi-professionista', 'feat.6.desc': 'Gestisci slot per più medici o fisioterapisti. Ogni slot assegnato al professionista giusto.',
-    'feat.7.title': 'Integrazione WhatsApp', 'feat.7.desc': 'API WhatsApp Business completa. Perché i pazienti rispondono su WhatsApp.', 'feat.7.soon': 'Presto disponibile',
+    'feat.7.title': 'Integrazione WhatsApp', 'feat.7.desc': 'Live via Twilio WhatsApp. I pazienti rispondono S&Igrave; &mdash; lo slot viene prenotato automaticamente.', 'feat.7.live': '&#10003;&nbsp;Live', 'feat.10.title': 'Calendario visivo', 'feat.10.desc': 'Vista settimanale e mensile di tutti gli slot. Trascina sulla griglia per creare uno slot.', 'feat.10.live': '&#10003;&nbsp;Live',
     'feat.8.title': 'Caparra alla conferma', 'feat.8.desc': 'Richiedi una caparra di 10&ndash;20&nbsp;€ quando un paziente della lista conferma. L\'assenza comporta la perdita della caparra.', 'feat.8.soon': 'Presto disponibile',
     'feat.9.title': 'Dashboard di recupero', 'feat.9.desc': 'Tieni traccia degli slot recuperati, delle entrate salvate e dei trend di assenza mese per mese.', 'feat.9.soon': 'Presto disponibile',
     'practo.label': 'Usi già una piattaforma di prenotazione?', 'practo.h2': 'Tienila. Aggiungi SlotPilot.',

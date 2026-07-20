@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SlotPilot — Build Progress & Current Status</title>
+<meta name="description" content="SlotPilot Phase 1 is live. WhatsApp cascade, calendar view, inbound replies, automated reminders — all deployed and tested in production.">
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:var(--bg);}
+
+/* PROGRESS HERO */
+.pg-hero{background:var(--midnight);padding:110px 5vw 72px;position:relative;overflow:hidden;}
+.pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 80% 40%,rgba(0,191,165,0.07) 0%,transparent 55%),radial-gradient(ellipse 30% 40% at 5% 90%,rgba(244,98,42,0.05) 0%,transparent 50%);}
+.pg-hero-inner{max-width:820px;margin:0 auto;position:relative;z-index:1;}
+.pg-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(0,191,165,0.15);border:1px solid rgba(0,191,165,0.3);border-radius:100px;padding:5px 14px 5px 8px;margin-bottom:28px;}
+.pg-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);}
+.pg-badge-text{font-size:12px;font-weight:700;color:var(--teal);letter-spacing:0.04em;text-transform:uppercase;}
+.pg-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,5vw,56px);font-weight:700;color:#fff;line-height:1.1;letter-spacing:-0.025em;text-wrap:balance;margin-bottom:20px;}
+.pg-hero h1 em{font-style:italic;color:var(--teal);}
+.pg-hero-sub{font-size:18px;line-height:1.7;color:rgba(255,255,255,0.6);max-width:620px;margin-bottom:36px;}
+.pg-hero-sub strong{color:#fff;}
+.pg-hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.pg-demo-link{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--midnight);padding:12px 22px;border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;transition:background .2s,transform .15s;}
+.pg-demo-link:hover{background:#00D4B8;transform:translateY(-1px);}
+.pg-gh-link{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);padding:12px 22px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.12);transition:background .2s;}
+.pg-gh-link:hover{background:rgba(255,255,255,0.14);}
+.pg-hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:36px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);}
+.pg-meta-item{text-align:left;}
+.pg-meta-value{font-size:28px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-0.03em;line-height:1;}
+.pg-meta-value.teal{color:var(--teal);}
+.pg-meta-label{font-size:12px;color:rgba(255,255,255,0.45);margin-top:5px;line-height:1.3;}
+
+/* STATUS PILLS */
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:0.03em;text-transform:uppercase;white-space:nowrap;}
+.pill-live{background:rgba(0,191,165,0.15);color:var(--teal);border:1px solid rgba(0,191,165,0.25);}
+.pill-building{background:rgba(251,146,60,0.12);color:#FB923C;border:1px solid rgba(251,146,60,0.25);}
+.pill-planned{background:var(--border);color:var(--ash);}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+
+/* PHASE SECTION */
+.phase-section{padding:72px 5vw;}
+.phase-inner{max-width:860px;margin:0 auto;}
+.phase-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.phase-section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);text-wrap:balance;margin-bottom:8px;line-height:1.2;}
+.phase-section .phase-sub{font-size:15px;color:var(--ash);line-height:1.7;margin-bottom:48px;max-width:560px;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--teal),var(--border));border-radius:1px;}
+.tl-item{position:relative;margin-bottom:40px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-36px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--teal);}
+.tl-dot.planned{background:var(--border);box-shadow:0 0 0 2px var(--border);}
+.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;}
+.tl-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap;}
+.tl-date{font-size:12px;font-weight:600;color:var(--ash);letter-spacing:0.03em;margin-bottom:4px;}
+.tl-title{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+.tl-list{display:flex;flex-direction:column;gap:9px;}
+.tl-row{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ash);line-height:1.5;}
+.tl-row-icon{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;margin-top:1px;}
+.tl-row-icon.done{background:rgba(0,191,165,0.15);color:var(--teal);}
+.tl-row-icon.soon{background:var(--border);color:var(--ash);}
+
+/* TECH STACK SECTION */
+.tech-section{padding:64px 5vw;background:var(--surface);}
+.tech-inner{max-width:860px;margin:0 auto;}
+.tech-section .ts-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.tech-section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:10px;}
+.tech-section .ts-sub{font-size:15px;color:var(--ash);line-height:1.7;margin-bottom:36px;max-width:520px;}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:700px){.tech-grid{grid-template-columns:repeat(2,1fr);}}
+.tech-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.tc-layer{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
+.tc-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.tc-detail{font-size:12px;color:var(--ash);line-height:1.4;}
+
+/* ROADMAP SECTION */
+.roadmap-section{padding:64px 5vw;}
+.roadmap-inner{max-width:860px;margin:0 auto;}
+.roadmap-section .rm-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.roadmap-section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:10px;}
+.roadmap-section .rm-sub{font-size:15px;color:var(--ash);line-height:1.7;margin-bottom:36px;max-width:520px;}
+.rm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:620px){.rm-grid{grid-template-columns:1fr;}}
+.rm-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;}
+.rm-icon{width:36px;height:36px;border-radius:9px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.rm-body{}
+.rm-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.rm-desc{font-size:12px;color:var(--ash);line-height:1.5;}
+.rm-card-foot{margin-top:10px;}
+
+/* DEMO CTA */
+.pg-cta{background:var(--midnight);padding:72px 5vw;text-align:center;position:relative;overflow:hidden;}
+.pg-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,191,165,0.08) 0%,transparent 60%);}
+.pg-cta-inner{max-width:560px;margin:0 auto;position:relative;z-index:1;}
+.pg-cta h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(26px,4vw,40px);font-weight:700;color:#fff;letter-spacing:-0.02em;text-wrap:balance;margin-bottom:14px;line-height:1.15;}
+.pg-cta h2 em{font-style:italic;color:var(--teal);}
+.pg-cta p{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:32px;}
+.pg-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.pg-cta-note{font-size:13px;color:rgba(255,255,255,0.3);margin-top:20px;}
+.pg-cta-note a{color:rgba(255,255,255,0.5);text-decoration:none;}
+.pg-cta-note a:hover{color:#fff;}
+</style>
+</head>
+<body>
+<nav id="nav" class="dark-nav">
+  <a class="nav-logo" href="index.html"><span class="dot"></span>SlotPilot</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nav-link" href="how-it-works.html" data-i18n="nav.how">How it works</a>
+    <a class="nav-link" href="docs.html" data-i18n="nav.docs">Docs</a>
+    <a class="nav-link active" href="progress.html" data-i18n="nav.progress">Progress</a>
+    <button class="nav-theme" id="themeBtn" aria-label="Toggle theme">&#9681;</button>
+    <div class="lang-picker">
+      <button class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-label="Select language">EN &#9662;</button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <button class="lang-option active" data-lang="en">English</button>
+        <button class="lang-option" data-lang="fr">Français</button>
+        <button class="lang-option" data-lang="ro">Română</button>
+        <button class="lang-option" data-lang="de">Deutsch</button>
+        <button class="lang-option" data-lang="es">Español</button>
+        <button class="lang-option" data-lang="it">Italiano</button>
+        <button class="lang-option" data-lang="pt">Português</button>
+        <button class="lang-option" data-lang="ja">日本語</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="pg-hero">
+  <div class="pg-hero-inner">
+    <div class="pg-badge"><span class="pg-badge-dot"></span><span class="pg-badge-text">Phase 1 &mdash; Live in production</span></div>
+    <h1>From idea to working product<br><em>in three weeks.</em></h1>
+    <p class="pg-hero-sub">WhatsApp cascade, inbound replies, automated reminders, visual calendar — all deployed and <strong>tested end-to-end in production</strong>. Here's the full build log.</p>
+    <div class="pg-hero-actions">
+      <a class="pg-demo-link" href="https://slotpilot-zeta.vercel.app" target="_blank" rel="noopener">Try the live demo &rarr;</a>
+      <a class="pg-gh-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        View source
+      </a>
+    </div>
+    <div class="pg-hero-meta">
+      <div class="pg-meta-item">
+        <div class="pg-meta-value teal">8</div>
+        <div class="pg-meta-label">features shipped<br>Phase 1</div>
+      </div>
+      <div class="pg-meta-item">
+        <div class="pg-meta-value">~2,500</div>
+        <div class="pg-meta-label">lines of TypeScript<br>total codebase</div>
+      </div>
+      <div class="pg-meta-item">
+        <div class="pg-meta-value">3</div>
+        <div class="pg-meta-label">messaging providers<br>Twilio · Meta · MSG91</div>
+      </div>
+      <div class="pg-meta-item">
+        <div class="pg-meta-value">$0</div>
+        <div class="pg-meta-label">infrastructure cost<br>Vercel + Turso free tier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD LOG -->
+<section class="phase-section">
+  <div class="phase-inner">
+    <div class="phase-eyebrow">Build log</div>
+    <h2>What shipped and when</h2>
+    <p class="phase-sub">End-to-end tested in production, not just locally. Every feature below works on the live deployment.</p>
+
+    <div class="timeline">
+
+      <!-- Foundation -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">July 2026 &mdash; Week 1</div>
+              <div class="tl-title">Foundation &amp; clinic onboarding</div>
+            </div>
+            <span class="pill pill-live"><span class="pill-dot"></span>Live</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Clinic self-signup with email + password (JWT sessions, 7-day cookies)</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Dashboard with slot management — create, book, cancel, mark no-show</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Public patient join page at <code>/join/[clinic-slug]</code> — no account needed, 90-second signup</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Priority queue — mark patients as urgent so they jump the waitlist when a slot opens</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>SMS inbox — full message history with every patient interaction</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">July 2026 &mdash; Week 2</div>
+              <div class="tl-title">WhatsApp cascade &amp; inbound replies</div>
+            </div>
+            <span class="pill pill-live"><span class="pill-dot"></span>Live</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Multi-provider messaging abstraction — Twilio WhatsApp, Twilio SMS, Meta Cloud API, MSG91, or console (dev mode)</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Automatic cascade: slot opens → next matching patient contacted on WhatsApp → 15-minute reply window</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Inbound webhook — patient replies <strong>YES</strong> (books slot) / <strong>NO</strong> (skips, next patient tried) / <strong>CANCEL</strong> (re-opens slot)</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Automated appointment reminders — 24h before and 2h before the appointment</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Cron automation via cron-job.org (free) — cascade every 5 min, reminders every 15 min</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">July 2026 &mdash; Week 3</div>
+              <div class="tl-title">Visual calendar with drag-to-create</div>
+            </div>
+            <span class="pill pill-live"><span class="pill-dot"></span>Live</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Week view — Mon–Sun columns, 7am–9pm time grid, 15-minute slot snapping</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Month view — 6×7 grid with colour-coded dots per day; click any day to jump to its week</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Drag-to-create — click and drag on the week grid to create a slot with times pre-filled; no external library</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Slot status colours — emerald (available), blue (booked), slate (cancelled), red (no-show)</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Current-time indicator line in today's column</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deployment -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">July 2026 &mdash; Week 3</div>
+              <div class="tl-title">Production deployment</div>
+            </div>
+            <span class="pill pill-live"><span class="pill-dot"></span>Live</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Deployed to Vercel (Hobby tier) with GitHub CI/CD</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Production database on Turso (libsql cloud) — SQLite-compatible, zero cold-start issues</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Twilio WhatsApp sandbox configured and tested end-to-end — patient receives message, replies YES, slot auto-books</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>cron-job.org jobs active — cascade and reminder endpoints called every 5 / 15 minutes</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 placeholder -->
+      <div class="tl-item">
+        <div class="tl-dot planned"></div>
+        <div class="tl-card" style="opacity:.65;">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">Coming next</div>
+              <div class="tl-title">Phase 2 — Monetisation &amp; analytics</div>
+            </div>
+            <span class="pill pill-planned">Planned</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>UPI deposit on confirmation — ₹100–200 collected when patient claims a slot</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Recovery analytics — fill rate, average fill time, revenue recovered by month</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Patient opt-out / STOP handling</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Meta Cloud API (1,000 free conversations/month) in production</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-section">
+  <div class="tech-inner">
+    <div class="ts-eyebrow">Architecture</div>
+    <h2>The tech stack</h2>
+    <p class="ts-sub">Chosen for zero infrastructure cost at launch, with a clear migration path to enterprise scale.</p>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tc-layer">Framework</div>
+        <div class="tc-name">Next.js 16</div>
+        <div class="tc-detail">App Router, API routes as serverless functions, RSC</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Language</div>
+        <div class="tc-name">TypeScript 5</div>
+        <div class="tc-detail">End-to-end types from DB schema to API response</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Database</div>
+        <div class="tc-name">Turso + Prisma 7</div>
+        <div class="tc-detail">libsql cloud, SQLite-compatible, free tier, no pooling needed</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Auth</div>
+        <div class="tc-name">JWT via jose</div>
+        <div class="tc-detail">Stateless httpOnly cookies, 7-day expiry, no external service</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Messaging</div>
+        <div class="tc-name">Twilio</div>
+        <div class="tc-detail">WhatsApp + SMS from one API. Provider-agnostic abstraction for MSG91, Meta</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Styling</div>
+        <div class="tc-name">Tailwind CSS v4</div>
+        <div class="tc-detail">Utility-first, no design system overhead, fast iterations</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Cron</div>
+        <div class="tc-name">cron-job.org</div>
+        <div class="tc-detail">Free external cron, bypasses Vercel Hobby daily-only limitation</div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Hosting</div>
+        <div class="tc-name">Vercel Hobby</div>
+        <div class="tc-detail">GitHub CI/CD, instant deploys, edge network — $0/month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section">
+  <div class="roadmap-inner">
+    <div class="rm-eyebrow">What's next</div>
+    <h2>Phase 2 roadmap</h2>
+    <p class="rm-sub">The core loop works. Now we make it stickier and monetisable.</p>
+    <div class="rm-grid">
+      <div class="rm-card">
+        <div class="rm-icon">&#8377;</div>
+        <div class="rm-body">
+          <div class="rm-title">UPI deposit on confirm</div>
+          <div class="rm-desc">Charge ₹100–200 when a waitlist patient claims a slot. No-show loses the deposit. Reduces ghost confirmations to near zero.</div>
+          <div class="rm-card-foot"><span class="pill pill-building"><span class="pill-dot"></span>Building</span></div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-icon">&#128202;</div>
+        <div class="rm-body">
+          <div class="rm-title">Recovery analytics</div>
+          <div class="rm-desc">Fill rate, average time-to-fill, revenue recovered by month. Make the ROI visible so clinics never cancel their subscription.</div>
+          <div class="rm-card-foot"><span class="pill pill-building"><span class="pill-dot"></span>Building</span></div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-icon">&#128172;</div>
+        <div class="rm-body">
+          <div class="rm-title">Meta Cloud API (production)</div>
+          <div class="rm-desc">1,000 free conversations/month. Complete the approval process and offer zero-cost WhatsApp for small clinics on the free tier.</div>
+          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-icon">&#128197;</div>
+        <div class="rm-body">
+          <div class="rm-title">Google Calendar sync</div>
+          <div class="rm-desc">Two-way sync so clinic slots appear in Google Calendar and cancellations propagate back to SlotPilot automatically.</div>
+          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-icon">&#127968;</div>
+        <div class="rm-body">
+          <div class="rm-title">Multi-location support</div>
+          <div class="rm-desc">One account, multiple clinic branches. Shared waitlist pool or isolated per branch — clinic's choice.</div>
+          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-icon">&#128274;</div>
+        <div class="rm-body">
+          <div class="rm-title">HIPAA-compliant option</div>
+          <div class="rm-desc">AWS deployment with Business Associate Agreement (BAA) for US healthcare providers who need HIPAA compliance.</div>
+          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO CTA -->
+<section class="pg-cta">
+  <div class="pg-cta-inner">
+    <h2>It works. <em>Try it now.</em></h2>
+    <p>Sign up takes 60 seconds. Add a slot, cancel it, and watch a WhatsApp message go to a test patient — all in the same tab.</p>
+    <div class="pg-cta-btns">
+      <a class="pg-demo-link" href="https://slotpilot-zeta.vercel.app/signup" target="_blank" rel="noopener">Create a free clinic account &rarr;</a>
+      <a class="pg-gh-link" href="https://slotpilot-zeta.vercel.app" target="_blank" rel="noopener">View live demo</a>
+    </div>
+    <p class="pg-cta-note">
+      Healthcare company or investor? <a href="mailto:pritiranjan.swain@viavisolutions.com">Get in touch &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo"><span class="footer-dot"></span>SlotPilot</div><div class="footer-tagline" data-i18n="footer.tagline">Automated waitlist &amp; no-show recovery for small clinics</div></div>
+    <div class="footer-links">
+      <a class="footer-link" href="index.html" data-i18n="footer.home">Home</a>
+      <a class="footer-link" href="how-it-works.html" data-i18n="footer.how">How it works</a>
+      <a class="footer-link" href="docs.html" data-i18n="footer.docs">Docs</a>
+      <a class="footer-link" href="progress.html" data-i18n="footer.progress">Progress</a>
+      <a class="footer-link" href="index.html#pricing" data-i18n="footer.pricing">Pricing</a>
+      <a class="footer-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener" data-i18n="footer.github">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="locales/en.js"></script>
+<script src="locales/fr.js"></script>
+<script src="locales/ro.js"></script>
+<script src="locales/de.js"></script>
+<script src="locales/es.js"></script>
+<script src="locales/it.js"></script>
+<script src="locales/pt.js"></script>
+<script src="locales/ja.js"></script>
+<script src="i18n.js"></script>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{if(window.scrollY>40){nav.classList.remove('dark-nav');nav.classList.add('scrolled-dark');}else{nav.classList.add('dark-nav');nav.classList.remove('scrolled-dark');}},{passive:true});
+const root=document.documentElement,themeBtn=document.getElementById('themeBtn');
+const stored=localStorage.getItem('sp-theme');if(stored)root.dataset.theme=stored;
+themeBtn.addEventListener('click',()=>{const c=root.dataset.theme,s=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light',n=!c?(s==='dark'?'light':'dark'):c==='dark'?'light':'dark';root.dataset.theme=n;localStorage.setItem('sp-theme',n);});
+</script>
+</body>
+</html>

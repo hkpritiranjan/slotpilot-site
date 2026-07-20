@@ -1,8 +1,8 @@
 (function () {
   window.SP_LOCALES = window.SP_LOCALES || {};
   window.SP_LOCALES.es = {
-    'nav.home': 'Inicio', 'nav.how': 'Cómo funciona', 'nav.docs': 'Documentación', 'nav.startFree': 'Comenzar gratis &rarr;',
-    'footer.tagline': 'Lista de espera automatizada &amp; recuperación de ausencias para clínicas pequeñas', 'footer.home': 'Inicio', 'footer.how': 'Cómo funciona', 'footer.docs': 'Documentación', 'footer.pricing': 'Precios', 'footer.github': 'GitHub',
+    'nav.home': 'Inicio', 'nav.how': 'Cómo funciona', 'nav.docs': 'Documentación', 'nav.progress': 'Progreso', 'nav.startFree': 'Comenzar gratis &rarr;',
+    'footer.tagline': 'Lista de espera automatizada &amp; recuperación de ausencias para clínicas pequeñas', 'footer.home': 'Inicio', 'footer.how': 'Cómo funciona', 'footer.docs': 'Documentación', 'footer.progress': 'Progreso', 'footer.pricing': 'Precios', 'footer.github': 'GitHub',
     'hero.eyebrow': 'Para clínicas que no pueden permitirse citas vacías',
     'hero.h1': 'Su cita de las 14:00<br>acaba de cancelarse.<br><em>Ya está ocupada.</em>',
     'hero.sub': 'SlotPilot envía automáticamente un SMS al <strong>siguiente paciente en su lista de espera</strong> en cuanto se libera un hueco. Confirma en 15 minutos. Su recepcionista no hace nada.',
@@ -26,7 +26,7 @@
     'feat.4.title': 'Cola de prioridad', 'feat.4.desc': 'Marque a los pacientes urgentes como alta prioridad. Pasan al frente cuando se libera un hueco.',
     'feat.5.title': 'Enlace público de registro', 'feat.5.desc': 'Enlace compartible que funciona en cualquier dispositivo. Los pacientes se registran en 90 segundos, sin cuenta.',
     'feat.6.title': 'Múltiples profesionales', 'feat.6.desc': 'Gestione citas para varios médicos o fisioterapeutas. Cada cita asignada al profesional correcto.',
-    'feat.7.title': 'Integración WhatsApp', 'feat.7.desc': 'API completa de WhatsApp Business. Porque los pacientes responden por WhatsApp.', 'feat.7.soon': 'Próximamente',
+    'feat.7.title': 'Integración WhatsApp', 'feat.7.desc': 'En vivo v&iacute;a Twilio WhatsApp. Los pacientes responden S&Iacute; &mdash; la cita se reserva autom&aacute;ticamente.', 'feat.7.live': '&#10003;&nbsp;En vivo', 'feat.10.title': 'Calendario visual', 'feat.10.desc': 'Vista semanal y mensual de todos los slots. Arrastra en la cuadr&iacute;cula para crear una cita.', 'feat.10.live': '&#10003;&nbsp;En vivo',
     'feat.8.title': 'Depósito al confirmar', 'feat.8.desc': 'Cobre un depósito de 10&ndash;20&nbsp;€ cuando un paciente de la lista confirma. La ausencia pierde el depósito.', 'feat.8.soon': 'Próximamente',
     'feat.9.title': 'Panel de recuperación', 'feat.9.desc': 'Realice un seguimiento de las citas recuperadas, los ingresos ahorrados y las tendencias de ausencias mes a mes.', 'feat.9.soon': 'Próximamente',
     'practo.label': '¿Ya usa una plataforma de reservas?', 'practo.h2': 'Consérvela. Añada SlotPilot.',
