@@ -131,9 +131,9 @@ body{background:var(--bg);}
 <!-- HERO -->
 <section class="pg-hero">
   <div class="pg-hero-inner">
-    <div class="pg-badge"><span class="pg-badge-dot"></span><span class="pg-badge-text">Phase 1 &mdash; Live in production</span></div>
-    <h1>From idea to working product<br><em>in three weeks.</em></h1>
-    <p class="pg-hero-sub">WhatsApp cascade, inbound replies, automated reminders, visual calendar — all deployed and <strong>tested end-to-end in production</strong>. Here's the full build log.</p>
+    <div class="pg-badge"><span class="pg-badge-dot"></span><span class="pg-badge-text">Phase 2 &mdash; Live in production</span></div>
+    <h1>From idea to full product<br><em>in four weeks.</em></h1>
+    <p class="pg-hero-sub">WhatsApp cascade, visual calendar, recovery analytics, public booking page — <strong>18+ features shipped and tested end-to-end in production</strong>. Here's the full build log.</p>
     <div class="pg-hero-actions">
       <a class="pg-demo-link" href="https://slotpilot-zeta.vercel.app" target="_blank" rel="noopener">Try the live demo &rarr;</a>
       <a class="pg-gh-link" href="https://github.com/hkpritiranjan/slotpilot" target="_blank" rel="noopener">
@@ -143,12 +143,12 @@ body{background:var(--bg);}
     </div>
     <div class="pg-hero-meta">
       <div class="pg-meta-item">
-        <div class="pg-meta-value teal">8</div>
-        <div class="pg-meta-label">features shipped<br>Phase 1</div>
+        <div class="pg-meta-value teal">18+</div>
+        <div class="pg-meta-label">features shipped<br>across 2 phases</div>
       </div>
       <div class="pg-meta-item">
-        <div class="pg-meta-value">~2,500</div>
-        <div class="pg-meta-label">lines of TypeScript<br>total codebase</div>
+        <div class="pg-meta-value">~4,500</div>
+        <div class="pg-meta-label">lines of TypeScript<br>55 source files</div>
       </div>
       <div class="pg-meta-item">
         <div class="pg-meta-value">3</div>
@@ -254,22 +254,64 @@ body{background:var(--bg);}
         </div>
       </div>
 
-      <!-- Phase 2 placeholder -->
+      <!-- Phase 2 Sprint 1: Revenue & analytics -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">July 2026 &mdash; Week 4</div>
+              <div class="tl-title">Revenue tracking &amp; smart scheduling</div>
+            </div>
+            <span class="pill pill-live"><span class="pill-dot"></span>Live</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Recovery stats dashboard — recovered slots this week/month, revenue recovered, fill rate %, avg fill time</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Appointment type management with consultation fees — set a fee per type; dashboard shows ₹ revenue recovered</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Availability-aware cascade — patients specify preferred days (Mon/Wed/Fri) and time of day (morning/afternoon/evening); cascade skips non-matching patients rather than stopping at them</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Bulk slot generation — clinic defines a weekly schedule (days × time range × duration) and generates weeks of slots in one click; capped at 500 slots per batch</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>"Offer to waitlist" button — manually trigger cascade for any available slot from the slot list</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 Sprint 2: Patient experience -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <div>
+              <div class="tl-date">July 2026 &mdash; Week 4</div>
+              <div class="tl-title">Patient-facing booking &amp; clinic settings</div>
+            </div>
+            <span class="pill pill-live"><span class="pill-dot"></span>Live</span>
+          </div>
+          <div class="tl-list">
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Public booking page at <code>/book/[clinic-slug]</code> — no auth required; 7-day slot browser with date tabs, appointment type filter, and one-tap booking with WhatsApp/SMS confirmation</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Race-condition guard — 409 response if slot taken between page load and submit; reloads list automatically</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Clinic settings page — update name, phone, address, default slot duration; copy patient-facing booking and waitlist URLs</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Onboarding checklist on dashboard — 3-step guide (complete profile → generate slots → first patient) auto-hides once all steps are done</span></div>
+            <div class="tl-row"><div class="tl-row-icon done">&#10003;</div><span>Dashboard booking link banner — copy button + preview link for the clinic's shareable booking URL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 planned -->
       <div class="tl-item">
         <div class="tl-dot planned"></div>
         <div class="tl-card" style="opacity:.65;">
           <div class="tl-card-head">
             <div>
               <div class="tl-date">Coming next</div>
-              <div class="tl-title">Phase 2 — Monetisation &amp; analytics</div>
+              <div class="tl-title">Phase 3 &mdash; Payments &amp; integrations</div>
             </div>
             <span class="pill pill-planned">Planned</span>
           </div>
           <div class="tl-list">
-            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>UPI deposit on confirmation — ₹100–200 collected when patient claims a slot</span></div>
-            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Recovery analytics — fill rate, average fill time, revenue recovered by month</span></div>
-            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Patient opt-out / STOP handling</span></div>
-            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Meta Cloud API (1,000 free conversations/month) in production</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Razorpay payment at booking — patients pay the consultation fee upfront; zero no-shows, clinic earns before the appointment</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Google Calendar two-way sync — clinic slots appear in Google Calendar; cancellations propagate back automatically</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Multi-location support — one account, multiple branches; shared or isolated waitlist pools</span></div>
+            <div class="tl-row"><div class="tl-row-icon soon">○</div><span>Meta Cloud API (1,000 free conversations/month) — zero-cost WhatsApp for small clinics on the free tier</span></div>
           </div>
         </div>
       </div>
@@ -333,58 +375,58 @@ body{background:var(--bg);}
 <section class="roadmap-section">
   <div class="roadmap-inner">
     <div class="rm-eyebrow">What's next</div>
-    <h2>Phase 2 roadmap</h2>
-    <p class="rm-sub">The core loop works. Now we make it stickier and monetisable.</p>
-    <div class="rm-grid">
-      <div class="rm-card">
-        <div class="rm-icon">&#8377;</div>
-        <div class="rm-body">
-          <div class="rm-title">UPI deposit on confirm</div>
-          <div class="rm-desc">Charge ₹100–200 when a waitlist patient claims a slot. No-show loses the deposit. Reduces ghost confirmations to near zero.</div>
-          <div class="rm-card-foot"><span class="pill pill-building"><span class="pill-dot"></span>Building</span></div>
+    <h2>Phase 3 roadmap</h2>
+    <p class="rm-sub">Recovery and analytics are live. Now we add payments and deep integrations.</p>
+      <div class="rm-grid">
+        <div class="rm-card">
+          <div class="rm-icon">&#8377;</div>
+          <div class="rm-body">
+            <div class="rm-title">Razorpay payment at booking</div>
+            <div class="rm-desc">Patients pay the consultation fee when they book. No upfront risk for the clinic, zero ghost confirmations. Works at both booking page and waitlist claim.</div>
+            <div class="rm-card-foot"><span class="pill pill-building"><span class="pill-dot"></span>Building next</span></div>
+          </div>
+        </div>
+        <div class="rm-card">
+          <div class="rm-icon">&#128197;</div>
+          <div class="rm-body">
+            <div class="rm-title">Google Calendar sync</div>
+            <div class="rm-desc">Two-way sync so clinic slots appear in Google Calendar and cancellations propagate back to SlotPilot automatically. Doctors manage their schedule in one place.</div>
+            <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+          </div>
+        </div>
+        <div class="rm-card">
+          <div class="rm-icon">&#127968;</div>
+          <div class="rm-body">
+            <div class="rm-title">Multi-location support</div>
+            <div class="rm-desc">One account, multiple clinic branches. Shared waitlist pool or isolated per branch — clinic's choice. Single billing.</div>
+            <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+          </div>
+        </div>
+        <div class="rm-card">
+          <div class="rm-icon">&#128172;</div>
+          <div class="rm-body">
+            <div class="rm-title">Meta Cloud API (production)</div>
+            <div class="rm-desc">1,000 free conversations/month. Complete the approval process and offer zero-cost WhatsApp for small clinics on the free tier.</div>
+            <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+          </div>
+        </div>
+        <div class="rm-card">
+          <div class="rm-icon">&#128101;</div>
+          <div class="rm-body">
+            <div class="rm-title">Team access</div>
+            <div class="rm-desc">Multiple logins per clinic — receptionist, doctor, manager. Role-based access so each team member sees only what they need.</div>
+            <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+          </div>
+        </div>
+        <div class="rm-card">
+          <div class="rm-icon">&#128274;</div>
+          <div class="rm-body">
+            <div class="rm-title">HIPAA-compliant option</div>
+            <div class="rm-desc">AWS deployment with Business Associate Agreement for US healthcare providers. Same product, compliant infrastructure.</div>
+            <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
+          </div>
         </div>
       </div>
-      <div class="rm-card">
-        <div class="rm-icon">&#128202;</div>
-        <div class="rm-body">
-          <div class="rm-title">Recovery analytics</div>
-          <div class="rm-desc">Fill rate, average time-to-fill, revenue recovered by month. Make the ROI visible so clinics never cancel their subscription.</div>
-          <div class="rm-card-foot"><span class="pill pill-building"><span class="pill-dot"></span>Building</span></div>
-        </div>
-      </div>
-      <div class="rm-card">
-        <div class="rm-icon">&#128172;</div>
-        <div class="rm-body">
-          <div class="rm-title">Meta Cloud API (production)</div>
-          <div class="rm-desc">1,000 free conversations/month. Complete the approval process and offer zero-cost WhatsApp for small clinics on the free tier.</div>
-          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
-        </div>
-      </div>
-      <div class="rm-card">
-        <div class="rm-icon">&#128197;</div>
-        <div class="rm-body">
-          <div class="rm-title">Google Calendar sync</div>
-          <div class="rm-desc">Two-way sync so clinic slots appear in Google Calendar and cancellations propagate back to SlotPilot automatically.</div>
-          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
-        </div>
-      </div>
-      <div class="rm-card">
-        <div class="rm-icon">&#127968;</div>
-        <div class="rm-body">
-          <div class="rm-title">Multi-location support</div>
-          <div class="rm-desc">One account, multiple clinic branches. Shared waitlist pool or isolated per branch — clinic's choice.</div>
-          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
-        </div>
-      </div>
-      <div class="rm-card">
-        <div class="rm-icon">&#128274;</div>
-        <div class="rm-body">
-          <div class="rm-title">HIPAA-compliant option</div>
-          <div class="rm-desc">AWS deployment with Business Associate Agreement (BAA) for US healthcare providers who need HIPAA compliance.</div>
-          <div class="rm-card-foot"><span class="pill pill-planned">Planned</span></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 

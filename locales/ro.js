@@ -82,12 +82,15 @@
     'feat.6.desc':   'Gestionează programările pentru mai mulți medici sau kinetoterapeuți. Fiecare loc alocat furnizorului corect.',
     'feat.7.title':  'Integrare WhatsApp',
     'feat.7.desc': 'Live prin Twilio WhatsApp. Pacien&Tcedil;ii r&abreve;spund DA &mdash; slotul se rezerv&abreve; automat.', 'feat.7.live': '&#10003;&nbsp;Live', 'feat.10.title': 'Calendar vizual', 'feat.10.desc': 'Vizualizare s&abreve;pt&abreve;m&acirc;nal&abreve; &scedil;i lunar&abreve; a sloturilor. Trageți pe grilă pentru a crea un slot.', 'feat.10.live': '&#10003;&nbsp;Live',
+    'feat.11.live':  '&#10003;&nbsp;Live',
+    'feat.11.desc':  'Un link partajabil <em>/book/clinica-ta</em> pe care pacienții îl deschid pentru a rezerva direct locuri disponibile. File cu date, rezervare cu un clic, confirmare WhatsApp. Fără cont necesar.',
+    'feat.11.title':  'Pagina de rezervare pentru pacienți',
     'feat.8.title':  'Depozit la confirmare',
     'feat.8.desc':   'Cere 50&ndash;100&nbsp;RON depozit când un pacient din listă confirmă. Neprezentarea înseamnă pierderea depozitului.',
     'feat.8.soon':   'În curând',
     'feat.9.title':  'Tablou de bord recuperare',
     'feat.9.desc':   'Urmărește locurile recuperate, veniturile salvate și tendințele de neprezentare lunar.',
-    'feat.9.soon':   'În curând',
+    'feat.9.live':   '&#10003;&nbsp;Live',
 
     /* BOOKING PLATFORM SECTION */
     'practo.label': 'Folosești deja o platformă de rezervări?',
@@ -113,6 +116,8 @@
     'price.f6':      'Link public de înscriere pentru pacienți',
     'price.f7':      'Suport multi-practician',
     'price.f8':      'Inbox SMS &amp; jurnal complet de mesaje',
+    'price.f10':  'Pagina de rezervare pentru pacienți (/book/slug)',
+    'price.f9':  'Tablou de bord statistici recuperare',
     'price.btn':     'Începe gratuit &mdash; fără card bancar',
     'price.note':    'Anulează oricând. Cele mai multe clinici recuperează costul lunar din primul loc ocupat.',
 
@@ -166,8 +171,8 @@
     'hiw.tip2.text':    'Cei mai mulți pacienți vin din recomandări sau direct. Adaugi rezervările în SlotPilot manual. Pacienților care sună pentru disponibilități li se spune să se înscrie pe listă prin link. Când ceva este anulat, SlotPilot gestionează recuperarea.',
     'hiw.tip3.label':   '&#8679; Caz de utilizare a cozii cu prioritate',
     'hiw.tip3.text':    'Un pacient post-operatoriu are nevoie de fizioterapie urgent, dar calendarul este plin. Adaugă-l pe lista de așteptare și marchează-l ca <strong>prioritate înaltă</strong>. La următoarea anulare &mdash; el va fi primul contactat.',
-    'hiw.tip4.label':   '&#128172; WhatsApp (în curând)',
-    'hiw.tip4.text':    'Livrarea SMS poate fi nesigură uneori. Integrarea WhatsApp Business API va înlocui complet SMS-urile &mdash; același flux DA/NU, dar prin WhatsApp unde pacienții chiar răspund.',
+    'hiw.tip4.label': '&#128172; WhatsApp (activ)',
+    'hiw.tip4.text': 'Livrarea SMS poate fi nesigură uneori. SlotPilot folosește Twilio WhatsApp Business API &mdash; același flux DA/NU, dar prin WhatsApp unde pacienții chiar răspund. Alegeți WhatsApp sau SMS per pacient.',
 
     'hiw.cta.h2':   'Ești gata să oprești pierderea programărilor?',
     'hiw.cta.p':    'Probă gratuită de 30 de zile. Fără card bancar. Configurare în 10 minute.',

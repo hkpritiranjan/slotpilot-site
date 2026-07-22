@@ -82,12 +82,15 @@
     'feat.6.desc':   'Gérez les créneaux de plusieurs médecins ou kinés. Chaque créneau attribué au bon praticien.',
     'feat.7.title':  'Intégration WhatsApp',
     'feat.7.desc': 'Live via Twilio WhatsApp. Les patients r&eacute;pondent OUI &mdash; le cr&eacute;neau se r&eacute;serve automatiquement.', 'feat.7.live': '&#10003;&nbsp;En direct', 'feat.10.title': 'Calendrier visuel', 'feat.10.desc': 'Vue semaine et mois de tous vos cr&eacute;neaux. Faites glisser sur la grille pour cr&eacute;er un cr&eacute;neau.', 'feat.10.live': '&#10003;&nbsp;En direct',
+    'feat.11.live':  '&#10003;&nbsp;Live',
+    'feat.11.desc':  'Un lien <em>/book/votre-clinique</em> partageable que les patients ouvrent pour réserver des créneaux disponibles. Onglets de dates, réservation en un clic, confirmation WhatsApp. Aucun compte requis.',
+    'feat.11.title':  'Page de réservation patient',
     'feat.8.title':  'Acompte à la confirmation',
     'feat.8.desc':   'Demandez un acompte de 10&ndash;20&nbsp;€ à la confirmation. L\'absent perd l\'acompte.',
     'feat.8.soon':   'Prochainement',
     'feat.9.title':  'Tableau de récupération',
     'feat.9.desc':   'Suivez les créneaux récupérés, les revenus sauvés et les tendances d\'absence mois par mois.',
-    'feat.9.soon':   'Prochainement',
+    'feat.9.live':   '&#10003;&nbsp;Live',
 
     /* BOOKING PLATFORM SECTION */
     'practo.label': 'Vous utilisez déjà une plateforme de réservation ?',
@@ -113,6 +116,8 @@
     'price.f6':      'Lien d\'inscription patient public',
     'price.f7':      'Support multi-praticien',
     'price.f8':      'Boîte de réception SMS &amp; journal de messages complet',
+    'price.f10':  'Page de réservation pour patients (/book/slug)',
+    'price.f9':  'Tableau de bord statistiques de récupération',
     'price.btn':     'Commencer gratuitement &mdash; sans carte bancaire',
     'price.note':    'Annulez à tout moment. La plupart des cabinets récupèrent le coût mensuel dès le premier créneau rempli.',
 
@@ -166,8 +171,8 @@
     'hiw.tip2.text':    'La plupart de vos patients viennent par bouche-à-oreille ou en direct. Vous ajoutez leurs prochaines réservations dans SlotPilot manuellement. Les patients qui appellent pour des disponibilités sont orientés vers le lien de liste. Quand quelque chose est annulé, SlotPilot gère la récupération.',
     'hiw.tip3.label':   '&#8679; Cas d\'usage de la file prioritaire',
     'hiw.tip3.text':    'Un patient post-opératoire a besoin de kinésithérapie dans la semaine mais votre agenda est plein. Ajoutez-le à la liste et marquez-le <strong>haute priorité</strong>. La prochaine annulation &mdash; il sera le premier contacté.',
-    'hiw.tip4.label':   '&#128172; WhatsApp (prochainement)',
-    'hiw.tip4.text':    'La livraison SMS peut parfois être peu fiable. L\'intégration WhatsApp Business API remplacera entièrement les SMS &mdash; même flux OUI/NON, mais via WhatsApp où les patients répondent réellement.',
+    'hiw.tip4.label': '&#128172; WhatsApp (en ligne)',
+    'hiw.tip4.text': 'La livraison SMS peut parfois être peu fiable. SlotPilot utilise l\'API WhatsApp Business de Twilio &mdash; même flux OUI/NON, mais via WhatsApp où les patients répondent vraiment. Choix WhatsApp ou SMS par patient.',
 
     'hiw.cta.h2':   'Prêt à arrêter de perdre des créneaux ?',
     'hiw.cta.p':    'Essai gratuit de 30 jours. Pas de carte bancaire. Configuration en 10 minutes.',
